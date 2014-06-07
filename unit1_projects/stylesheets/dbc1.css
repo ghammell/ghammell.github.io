@@ -18,6 +18,15 @@
 	border-top-left-radius: 5px;
 }
 
+li {
+	list-style-position: inside;
+}
+
+ul,
+ol {
+	padding: 0;
+}
+
 header {
 	border-top-right-radius: 50px;
 	border-top-left-radius: 50px;
@@ -40,10 +49,11 @@ body {
 
 div.learnings {
   border: 6px solid #949599;
+  margin: 6px;
 }
 
 section.links {
-	background: white;
+  background: white;
   border: 6px solid #949599;
   margin: 6px;
 
