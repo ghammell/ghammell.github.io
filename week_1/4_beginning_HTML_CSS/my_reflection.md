@@ -1,8 +1,10 @@
 ## 4.[Beginning HTML and CSS](4_beginning_HTML_CSS/readme.mc) Reflection
 
-* What makes sense to your about HTML? What doesn't? 
-* What seems good and bad about HTML?
-* Did you have an "aha" moments or were any concepts solidified?
-* Did you find any resources on your own that helped you better understand a topic? If so, please list it.
 
-<!-- Add your reflection here. Remove the comment markers -->
+There are only a couple things I've encountered thus far that don't make a whole lot of sense, but not having the answers hasn't set me back.  For one, I don't understand why if we dictate the doc type as html at the top of our file we still have to include <html> and </html>.  Also, I'm unfamiliar with the significance of lang="en" (obviously I know it has to do with the language being english, but what is the significance, really?).  Other things include charset, and rel="stylesheet".. I know the latter is part of designating that you are linking your HTML file to your CSS file, but I guess I'd just like to understand exactly what the 'rel' component means, and what alternatives there are, if any.  Other than these details, most of the higher level concepts all make sense to me - the connections between elements, tags, and attributes, the connection to CSS and the components there (selectors, properties and values).  The idea of structural semantics makes a lot of sense to me.
+
+I really like the way HTML is structured using the element / tag / attribute convention, and the way they all connect to CSS as selectors.  Its all just very logical to me.  I also like the idea of structural semantics - using the right tags for the right type of content (e.g. div vs p, or articles vs sections, etc..), and building intent into your code.  I don't have much experience, but I feel that these traits of HTML will make it easier to follow my own and other peoples' code.  
+
+Honestly, I don't have much personal experience with any other language like HTML, so its hard to say what's bad about it.  Ironically, I might use my 'good' as the 'bad' though and say that, because the expectation is getting the semantics right, there is more to remember and it could be easier to make what others would consider 'mistakes', like using div instead of section.  It seems that sometimes the right decision won't be straight forward.
+
+I believe I did have an 'aha' moment today when I started to realize more how all the dots connect between HTML, CSS, and other programming languages like Ruby.  I've always known these things existed, but the general 'well, how does it all come together and form a website?' question had still lingered.  Today I put it together that a website is just a collection of files stored somewhere - HTML files that contain content, that talk to CSS files to become stylized, that also talk to Ruby to imbed additional functionality and user interaction and to take inputs and make outputs - all stored on a server somewhere that I access through a domain name and web browser.  I know it seems so obvious but being new to all this it kind of just all connected today.
