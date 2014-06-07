@@ -1,0 +1,76 @@
+.learnings {
+	color: white;
+	background-color: gray;
+}
+
+.terms {
+	color: red;
+}
+
+#email {
+	background-color: rgba(255, 255, 255, 0.5);
+	border-top: 2px solid white;
+	border-left: 2px solid white;
+	border-right: 2px solid white;
+	margin: 6px;
+	padding: 2px;
+	border-top-right-radius: 5px;
+	border-top-left-radius: 5px;
+}
+
+header {
+	border-top-right-radius: 50px;
+	border-top-left-radius: 50px;
+	border: 6px solid white;
+	color: white;
+	background-color: rgba(0, 0, 0, 0.5);
+	margin: 6px;
+	padding-top: 20px;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+body {
+	background-color: rgb(168, 167, 252);
+	border: 6px solid black;
+	border-top-right-radius: 75px;
+	border-top-left-radius: 75px;
+	padding-top: 10px;
+}
+
+div.learnings {
+  border: 6px solid #949599;
+}
+
+section.links {
+	background: white;
+  border: 6px solid #949599;
+  margin: 6px;
+
+}
+
+img {
+	height: 300px;
+	margin: 10px;
+}
+/*
+  ========================================
+  Grid
+  ========================================
+*/
+
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.container{
+	width: 960px;
+	padding-left: 15px;
+	padding-right: 15px;
+	margin: 0 auto;
+}
+
