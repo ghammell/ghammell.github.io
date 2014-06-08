@@ -1,0 +1,134 @@
+
+
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.container{
+	width: 960px;
+/*	padding-left: 15px;
+	padding-right: 15px;*/
+	margin: 0 auto;
+}
+
+
+/*All the good link stuff towards the top ---------------------------------- */
+
+#buttonspace {
+
+	background: white;
+	float:right;
+	margin-right: -173px;
+	margin-top: 58px;
+	width: 172px;
+	padding:10px;
+	background: linear-gradient(black, #eee);
+	color: #eee;
+	border-bottom-left-radius: 30px;
+	border-bottom-right-radius: 30px;
+}
+
+
+#buttonwords {
+	font:bold 16px "Helvetica Neue";
+	text-align: center; /* centers text from left to right */
+}
+
+ul {
+	padding: 0; /* negates the auto padding that the browsers implement*/
+}
+
+#buttonwords li{
+	margin: 10px;
+	background: linear-gradient(#eee,white);
+	border: 1px solid #eee;
+	border-radius: 5px;
+	padding:2px;
+	list-style-type: none;
+	text-transform: uppercase;
+}
+
+#buttonwords a {
+	color:#777;
+	text-decoration: none;
+}
+
+#buttonwords a:hover {
+	color:black;
+	background: white;
+}
+
+
+/*End link stuff ---------------------------------------------*/
+
+body {
+	background: linear-gradient(white, #777);
+	border: 1px solid white;
+	position:relative;
+	border-bottom-right-radius: 30px;
+	border-bottom-left-radius: 30px;
+}
+
+#header {
+	position:absolute;
+	bottom: 0;
+	font-size: 60px;
+	margin-left: 115px;
+	margin-bottom: 5px;
+	float: left;
+	background: rgba(255, 255, 255, .5);
+	padding:3px;
+	border-radius: 10px;
+}
+
+header {
+	position:relative;
+	background-image: url(sf.jpg);
+	background-repeat: no-repeat;
+	height:226px;
+	width:959px;
+	border: 1px solid white;
+	border-bottom: 3px solid white;
+	margin-top: 10px;
+}
+
+#main {
+	width: 725px;
+	margin:15px;
+	background:white;
+	opacity: .75;
+	border-radius:30px;
+	padding:15px;
+}
+
+#title {
+	border-bottom: 1px solid #777;
+}
+
+#aboutme {
+	font-size: 12px;
+}
+
+
+#self {
+	float: right;
+	height: 250px;
+	margin:30px 30px 0 0;
+	border: 1px solid white;
+}
+
+#date {
+	padding-bottom: 15px;
+}
+
+
+footer {
+	vertical-align: bottom;
+	margin:15px;
+	font-size: 12px;
+	color:white;
+}
