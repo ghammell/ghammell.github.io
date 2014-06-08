@@ -71,6 +71,7 @@ body {
 	position:relative;
 	border-bottom-right-radius: 30px;
 	border-bottom-left-radius: 30px;
+	min-height: 700px;
 }
 
 #header {
@@ -103,6 +104,7 @@ header {
 	opacity: .75;
 	border-radius:30px;
 	padding:15px;
+	min-height: 600px;
 }
 
 #title {
