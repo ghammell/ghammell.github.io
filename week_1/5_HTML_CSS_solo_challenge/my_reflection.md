@@ -1,10 +1,15 @@
 ## 5. [HTML/CSS Solo Challenge](5_HTML_CSS_solo_challenge/readme.md) Reflection
 
-* What questions did you ask during this challnge? What resources did you find to help you answer them?  
-* What concepts are you having trouble with, or did you just figure something out? If so, what?  
-* Did you learn any new skills or tricks?
-* How confident are you with each of the Learning Competencies for this challenge? 
-* Which parts of the challenge did you enjoy?
-* Which parts of the challenge did you find tedious?
+Most of my questions during this challenge concerned things that I don't think were necessarily required to complete the challenge.  For example, I really wanted to see if I could change the bullets on my lists to mini-surfboards.  This wasn't necessary for the challenge, but it's still cool! and I learned how to manipulate lists using the 'list-style' property, so that was a plus.  At first the surfboards loaded on the site at full size (probably 1000pxs), which obviously looked terrible.  I thought there might be a way to re-size the bullets right in CSS, but I couldn't figure it out, so I had to change the size of the actual image stored on my computer.  Another question I had was how to display a message when hovering over an image.  What I wanted to do was make it so that when I hovered over the surf pics, they would provide a link to a youtube video demo.  Changing the images to be opaque upon hover was not difficult, nor would be making the images links (which I ultimately didn't do), but I never figured out how to display a message upon hover - something like 'Click here to watch a demo!'.  That'll be my next project.  For both of these questions I believe I referenced Stackoverflow.  For the remainder of the challenge, anything I needed refreshing on I was able to find in Shay Howe's guide.
 
-<!-- Add your reflection here. Remove the comment markers -->
+I also ran into some complications with float.  What happened was, I originally built a layout that I liked, with some content, and everything looked good.  When I tried to introduce the side-bar using float-right, the background (the green-ish area behind the content on my site), shrunk to just a few pixels, and everything was thrown off.  Ultimately I realized this was because the background was originally auto-sizing to the size of the original content I had in there (the 'basics' section).  When I added the side-bar using float-right, I guess the background no longer knew what size to default to, so it shrunk down to only the pixel size of its padding property.  Eventually I realized I just needed to add a manual 'height' property to the background element - a simple fix but it took me a little while to figure out.
+
+I think I need to work on laying out my HTML in a more organized manner.  Or, becoming more efficient with how I'm using classes and id's.  I'm not really sure what the problem is, if there even is one (its hard to say without feedback), but I feel like my website could have definitely been put together with much fewer lines of code - somehow optimizing the padding / margins I use.  I found that I was changing the margins / padding on a lot of elements, sometimes even just the top or bottom, to get things to look right.  But I think if I could figure out how to do relative sizing a bit more, that would really help make things more efficient.
+
+Amongst a few others some tricks I learned this time around were how to make custom bullets for your list, how to use gradient backgrounds, and how to use the hover pseudo-class.  These are undoubtedly skills that I will use on future projects.  Also, floating the images in the content area was great to learn.
+
+How confident am I on the learning competencies?  Using HTML tags:  very confident.  Positioning HTML elements: not so much.  It's not that I don't understand the concept, it's just that I think I need to refine my ability.  Like I said above, I felt like I was doing too much finagling to get things to look right, which didn't make me feel comfortable.
+
+I really enjoyed the whole challenge.  This website looks a whole lot better that my first project.
+
+The only thing I found tedious was trying to get things to align right in terms of margin / padding.  It goes back to what I mentioned earlier - that I don't think I'm employing best practices to keep things simple and efficient.  I think I will get better with time in this regard, though.
