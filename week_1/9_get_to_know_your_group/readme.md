@@ -14,7 +14,7 @@ Despite popular belief, most software engineers work in teams and there is a str
 
 ## Release 0: Intro Email
 
-Once you know who is in your accountability group, send everyone in your group and email **and** edit the [my_reflection.md](my_reflection.md) file associated with this challenge in your local `phase_0_unit_1` repo,. Commit your changes and save them to GitHub. 
+Once you know who is in your accountability group, send everyone in your group an email.
 
 * Name
 * Location
