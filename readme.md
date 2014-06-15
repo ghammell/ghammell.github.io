@@ -1,2 +1,0 @@
-ghammell.github.io
-==================
