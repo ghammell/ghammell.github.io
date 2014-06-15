@@ -13,28 +13,77 @@ body {
 	min-height: 80px;
 	border-bottom: 1px solid black;
 	padding: 1% 1% 0 1%;
+	position:fixed;
+	background: #eee;
+	width: 95%;
+	top: 0;
+	opacity:.9;
 }
 
 #nav {
 		border-bottom: 1px solid black;
 }
 
-#links li{
+#links a{
 	display: block;
 	float: left;
 	margin: 5px;
-	background: #80CC99;
+	background-color: #80CC99;
 	color: white;
 	border-radius: 5px;
 	border: 1px solid #66C285;
 	text-transform: lowercase;
 	text-align: center;
 	padding: 2px;
+    width: 75px;
+    transition: all 1s ease;
 }
 
-#links li:hover {
-	background: linear-gradient(#80CC99, #005C1F);
+.weeks {
+	display: block;
+	float: left;
+	margin: 5px;
+	background-color: white;
+	color: black;
+	border-radius: 5px;
+	border: 1px solid white;
+	text-transform: lowercase;
+	text-align: center;
+	padding: 2px;
+    width: 15px;
+    transition: all 1s ease;
+}
 
+#links a:hover {
+	background-color: #005C1F;
+    width: 100px;
+}
+
+.weeks:hover {
+	background-color: #777;
+	width: 20px;
+}
+
+
+#external img {
+	height: 30px;
+	opacity: .5;
+	transition: height 1s;
+	transition: opacity 1s;
+}
+
+#external {
+	float:right;
+}
+
+#external img:hover {
+	opacity: 1;
+	height: 35px;
+}
+
+#links:visited {
+	background: white;
+	color: green;
 }
 
 #links a {
@@ -51,7 +100,6 @@ ol {
 #hello {
 	margin:0 0 0 5px;
 }
-
 
 .banda:before, .banda:after {
     font-family: arial,serif;
@@ -77,13 +125,60 @@ li #firstlink{
 #main {
 	width: 100%;
 	max-width: 960px;
-	margin: 10px auto 0px auto;
+	margin: 104px auto 0px auto;
 	background: #80CC99;
 	color: white;
 	text-align: center;
 	border-bottom: 1px solid #66C285;
 	padding: 1%;
 }
+
+#about {
+	width: 100%;
+	color: white;
+	max-width: 960px;
+	background:#3D3D46;
+	margin: 0 auto 10px auto;
+	padding: 1%;
+/*	height: 165px;*/
+}
+
+p {
+	margin: 0;
+}
+
+#left {
+	width: 65%;
+	font-size: 30px;
+	margin: 1%;
+	border-bottom: 1px solid #7575A3;
+	padding-bottom: 1%;
+	display: inline-block;
+	vertical-align: bottom;
+	transition: all 10s ease;
+}
+
+#left:hover {
+	color: #7575A3;
+}
+
+#right {
+/*	float: right;*/
+	display: inline-block;
+	width: 29%;
+	font-size: 12px;
+	margin: 1%;
+	text-align: right;
+	border-bottom: 1px solid #7575A3;
+	padding-bottom: 1%;
+	vertical-align: bottom;
+	transition: all 10s ease;
+}
+
+#right:hover {
+	color: #7575A3;
+}
+
 
 #welcome {
 	margin: 0;
@@ -111,12 +206,16 @@ footer {
 	background: #C2E7CE;
 }
 
+
 .images {
 	border: 1px solid #66C285;
 	margin: 1% 2%;
 	max-height: 250px;
 	vertical-align: middle;
 }
+
+
+
 
 @media screen and (max-width: 400px) {
 	.change {
@@ -131,5 +230,36 @@ footer {
     font-family: arial,serif;
     content: "";  /* Some fancy character */
     color: #666633;
-}
+	}
+
+	#links li {
+	font-size: 12px;
+	width: 60px;
+	}
+
+	#links li:hover {
+	width: 80px;
+	}
+
+	#external img {
+	height: 20px;
+	}
+
+	#external img:hover{
+	height: 30px;
+	}
+
+	#right {
+		display: inline;
+		text-align: center;
+	}
+
+	#left {
+		width: 100%;
+		text-align: center;
+	}
+
+	.weeks {
+		display: none;
+	}
 }

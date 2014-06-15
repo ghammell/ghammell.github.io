@@ -10,9 +10,14 @@ body {
 }
 
 #top {
-	min-height: 63px;
+	min-height: 80px;
 	border-bottom: 1px solid black;
 	padding: 1% 1% 0 1%;
+	position:fixed;
+	background: #eee;
+	width: 95%;
+	top: 0;
+	opacity:.9;
 }
 
 #nav {
@@ -23,18 +28,38 @@ body {
 	display: block;
 	float: left;
 	margin: 5px;
-	background: #80CC99;
+	background-color: #80CC99;
 	color: white;
 	border-radius: 5px;
 	border: 1px solid #66C285;
 	text-transform: lowercase;
 	text-align: center;
 	padding: 2px;
+	width: 75px;
+	height: 35px;
+	transition: all 1s ease;
 }
 
 #links li:hover {
-	background: linear-gradient(#80CC99, #005C1F);
+	background-color: #005C1F;
+	width: 100px;
 
+}
+
+#external img {
+	height: 30px;
+	opacity: .5;
+	transition: height 1s;
+	transition: opacity 1s;
+}
+
+#external {
+	float: right;
+}
+
+#external img:hover {
+	opacity: 1;
+	height: 35px;
 }
 
 #links a {
@@ -77,7 +102,7 @@ li #firstlink{
 #main {
 	width: 100%;
 	max-width: 960px;
-	margin: 10px auto 0px auto;
+	margin: 104px auto 0px auto;
 	background: #80CC99;
 	color: white;
 	text-align: center;
