@@ -54,6 +54,7 @@ body {
     transition: all 1s ease;
 }
 
+
 #links a:hover {
 	background-color: #005C1F;
     width: 100px;
@@ -63,7 +64,6 @@ body {
 	background-color: #777;
 	width: 20px;
 }
-
 
 #external img {
 	height: 30px;
