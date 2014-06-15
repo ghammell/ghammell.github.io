@@ -58,7 +58,8 @@ Click on the **Sync Branch** button in the upper right corner.
 
 It's now time for the big reveal!! 
 
-Go to **http://[USERNAME].github.io** to see your HTML page live!
+Go to **http://[USERNAME].github.io** to see your HTML page live!<br>
+*NOTE: It can sometimes take up to 15 minutes to update the site after creating your repo, so if you run into a 404 error, be patient and check again later.*
 
 ![GitHub commit](../imgs/github-page1.jpg)
 

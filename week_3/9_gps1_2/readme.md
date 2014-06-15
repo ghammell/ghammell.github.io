@@ -27,7 +27,7 @@ Thinking in Javascript, let's find a way to store information for our two freebi
   - Age
   - Quote (your favorite, or just make one up!)
 
-Once you've done this, make sure your code actually works by testing it in **Node**! How can we going about testing our code? This is a good opportunity to try out Screen Sharing in the Google Hangout (one person will share their Terminal).
+Once you've done this, make sure your code actually works by testing it in **Node**! How can we go about testing our code? This is a good opportunity to try out Screen Sharing in the Google Hangout (one person will share their Terminal).
 
 ## RELEASE 1: "Here they come!"
 The following actors heard about your growing clientele, and want in! Create **Objects** for the following
