@@ -6,12 +6,20 @@
 body {
 	border-bottom: 1px solid black;
 	background: #eee;
+<<<<<<< HEAD
+=======
+	padding:.6em;
+>>>>>>> FETCH_HEAD
 	font-family: arial;
 }
 
 #top {
 	min-height: 63px;
 	border-bottom: 1px solid black;
+<<<<<<< HEAD
+=======
+	width: 100%;
+>>>>>>> FETCH_HEAD
 	padding: 1% 1% 0 1%;
 }
 
