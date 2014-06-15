@@ -155,7 +155,7 @@ p {
 	padding-bottom: 1%;
 	display: inline-block;
 	vertical-align: bottom;
-	transition: all 10s ease;
+	transition: all 2s ease;
 }
 
 #left:hover {
@@ -172,7 +172,7 @@ p {
 	border-bottom: 1px solid #7575A3;
 	padding-bottom: 1%;
 	vertical-align: bottom;
-	transition: all 10s ease;
+	transition: all 2s ease;
 }
 
 #right:hover {
