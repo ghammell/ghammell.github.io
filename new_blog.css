@@ -35,7 +35,7 @@ body {
 	text-transform: lowercase;
 	text-align: center;
 	padding: 2px;
-    width: 75px;
+    min-width: 75px;
     transition: all 1s ease;
 }
 
@@ -57,7 +57,7 @@ body {
 
 #links a:hover {
 	background-color: #005C1F;
-    width: 100px;
+    min-width: 100px;
 }
 
 .weeks:hover {
