@@ -70,6 +70,8 @@ body {
 	opacity: .5;
 	transition: height 1s;
 	transition: opacity 1s;
+	position: relative;
+	top: 17px;
 }
 
 #external {

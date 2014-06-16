@@ -1,0 +1,15 @@
+p {
+	position: static;
+}
+
+#id {
+	position: relative;
+}
+
+.class {
+	position: absolute;
+}
+
+section {
+	position: fixed;
+}

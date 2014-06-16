@@ -18,6 +18,7 @@ body {
 	width: 95%;
 	top: 0;
 	opacity:.9;
+	z-index: 1;
 }
 
 #nav {
@@ -51,6 +52,8 @@ body {
 	opacity: .5;
 	transition: height 1s;
 	transition: opacity 1s;
+	position: relative;
+	top: 17px;
 }
 
 #external {
@@ -141,6 +144,10 @@ footer {
 	margin: 1% auto;
 }
 
+.type {
+	border: 1px solid white;
+}
+
 .images {
 	border: 1px solid #66C285;
 	margin: 1% 2%;
@@ -148,6 +155,8 @@ footer {
 	vertical-align: middle;
 }
 
+
+/* FOR SMALLER SCREEEEEENS */
 @media screen and (max-width: 400px) {
 	.change {
 		display: none;
@@ -161,5 +170,41 @@ footer {
     font-family: arial,serif;
     content: "";  /* Some fancy character */
     color: #666633;
+	}
 }
+
+/* END SMALLER SCREEN STUFF */
+
+
+
+.example {
+	width: 300px;
+	background: gray;
+	margin: 10px auto;
+	height: 150px;
+	text-align:left;
+	position: relative;
+	z-index: 0;
+}
+
+#example1 img{
+	position: static;
+}
+
+#example2 img {
+	position: absolute;
+	top: 10px;
+	right: 30px;
+}
+
+#example3 img {
+	position: relative;
+	top: 10px;
+	right: 30px;
+}
+
+#example4 img {
+	position: fixed;
+	top: 10px;
+	right: 30px;
 }
