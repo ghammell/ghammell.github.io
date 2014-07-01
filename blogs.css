@@ -152,6 +152,7 @@ footer {
 	margin: 1% auto;
 }
 
+
 .type {
 	border: 1px solid white;
 }
@@ -161,6 +162,29 @@ footer {
 	margin: 1% 2%;
 	max-height: 250px;
 	vertical-align: middle;
+}
+
+.code {
+	text-align: left;
+	background: #eee;
+	border-radius: 15px;
+	font-family: times;
+	max-width: 500px;
+	padding:15px;	
+	margin-right: auto;
+	margin-left: auto;
+}
+
+.output {
+	text-align: left;
+	background: #eee;
+	border-radius: 15px;
+	font-family: times;
+	max-width: 500px;
+	padding:15px;
+	color: blue;
+	margin-right: auto;
+	margin-left: auto;
 }
 
 
