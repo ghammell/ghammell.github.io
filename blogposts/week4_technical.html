@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="../blogs.css">
+	</head>
+	<body class="wrapper">
+		<div id="top">
+			<section>
+				<h1 id="hello" class="banda">GHammell's Blog</h1>
+			</section>
+
+			<nav id="links">
+				<ol>
+					<div id="linkspace">
+						<li id="firstlink"><a href="../index.html">Home</a></li>
+					</div>
+				</ol>
+			</nav>
+
+			<nav id="external">
+				<a href="https://www.facebook.com/gary.hammell.5" class="ext"><img src="../unit1_projects/images/asset.f.logo.lg.png"></a>
+				<a href="http://www.linkedin.com/pub/gary-hammell/53/574/352/" class="ext"><img src="../unit1_projects/images/linkedin.png"></a>
+				<a href="https://twitter.com/ghammell1"><img src="../unit1_projects/images/twitter.png" class="ext"></a>
+				<a href="https://plus.google.com/+GaryHammell1"><img src="../unit1_projects/images/gplus.png" class="ext"></a>
+				<a href="https://github.com/ghammell"><img src="../unit1_projects/images/github.png" class="ext"></a>
+			</nav>
+		</div>
+
+		<section id="main">
+			<h1 id="welcome" class="banda">Week 4 Technical Blog</h1>
+			<h5 id="maintag">What's this .cycle method all about?</h5>
+		</section>
+
+		<section id="blog">
+				<div id="words">
+						<p>Ruby's enumerable module includes a nifty little method called <b>#cycle</b>.  It's just like the #each method, only it won't stop iterating unless you tell it too.  Once it iterates throught the last object, it will start right back at the beginning and keep going, unless you've specified a specific amount of cycles for it to run, or a specific breaking point.  Lets look at an example.  If we ran the code:
+							<p class="code"> [1,2,3,4,5].each {|num| p num}<br>puts<br>
+								[1,2,3,4,5].cycle(1) {|num| p num}
+							</p>
+
+						We'd get:
+
+							<p class="output">
+							12345<br>
+							12345
+							</p>
+
+						The same results in both scenarios.  How about if we adust the parameter on the #cycle method?
+
+							<p class="code"> [1,2,3,4,5].each {|num| p num}<br>puts<br>
+								[1,2,3,4,5].cycle<b>(3)</b> {|num| p num}
+							</p>
+
+						We'd get:
+
+							<p class="output">
+							12345<br>
+							123451234512345
+							</p>
+
+						See?  The #cycle method is just like the #each method, only it performs the code in the block as many times as designated.<br><br>
+
+						Another interesting use of the #cycle method is that it can be used in conjunction with <b>break</b> to only stop running when a specific event has occured.  As a simple example, lets try running something like:
+
+							<p class="code"> i = 0<br>
+								(1..10).to_a.cycle {|num| print "#{num} "; i += 1; <b>break if i == 15</b>}
+							</p>
+
+						The output:
+
+						<p class="output">
+							1 2 3 4 5 6 7 8 9 10 1 2 3 4 5 
+						</p>
+
+						Notice how it stops printing numbers halfway through the second cycle?<br><br>Here, we quickly converted the range 1-10 to an array, and ran #cycle on it.  But we didn't include a parameter to tell the code when to stop running.  The only reason this sucker stops at all is because of the <b>break</b> we input at the end of the block.  By including a counter "i" and increasing the value of it at every iteration through "i += 1", we can tell the code exactly when we want it to stop running, even if its only partially through the current cycle.<br><br>
+
+						There are a lot of simple ways that #cycle can be used to quickly perform some tasks.  I won't get too into those because there are other great resources explaining them.  If you're interested, try:<br> <a href="http://www.globalnerdy.com/2008/07/06/enumerating-enumerable-enumerablecycle/"><b>Global Nerdy</b></a><br><br>
+
+						Instead, I figured I'd dive into what I think would be practical applications of the #cycle method.<br><br>
+
+						Let's say you and you're friends are lazy and want to split up the studying for a really boring class that you're all taking.  You might decide to divvy up the chapters of the book by cycling through your group of friends - each taking one chapter, and then starting from the first person again.  It may behoove you to write some code to figure this out.  You might start with an array including your groups names:
+
+							<p class="code"> 
+								team = [:mike, :adam, :emily, :sarah, :ken, :barbie]
+							</p>
+
+						Let's assume there are 100 chapters to allocate.  You might then write:
+
+							<p class="code">
+								i = 1<br>
+								counts = {}<br><br>
+
+								team.cycle {|name| counts[name] == nil ? counts[name] = [i] : counts[name] << i; i += 1; break if i == 101}
+							</p>
+
+						What's really happening here?  Well, each time we iterate over a name:<br><br>
+						<ul>
+							<li><b>counts[name] == nil ?</b>  -- We're asking, does the <i>counts</i> hash include the current name as a key, and does it have a value?</li><br>
+							<li><b>? counts[name] = [i]</b> -- If there is no value (meaning the code prior to the "?" is true), then lets set the value for this key equal to an array that holds the current number we are on.</li><br>
+							<li><b>: counts[name] << i;</b> -- If the key already exists and has a value (which would be an array established in the prior step), lets add into that value the current number</li><br>
+							<li><b>i += 1;</b> -- Every time we add in a number, we want this counter to go up until we've allocated all 100 chapters</li><br>
+							<li><b>break if i == 101</b> -- This determines when the cycles stop.</li><br><br>
+						</ul>
+
+						Now, if we ran:
+
+							<p class="code">
+								p counts
+							</p>
+
+						We'd get:
+
+							<p class="output">
+								{:adam=>[2, 8, 14, 20, 26, 32, 38, 44, 50, 56, 62, 68, 74, 80, 86, 92, 98], :emily=>[3, 9, 15, 21, 27, 33, 39, 45, 51, 57, 63, 69, 75, 81, 87, 93, 99], :sarah=>[4, 10, 16, 22, 28, 34, 40, 46, 52, 58, 64, 70, 76, 82, 88, 94, 100], :ken=>[5, 11, 17, 23, 29, 35, 41, 47, 53, 59, 65, 71, 77, 83, 89, 95], :barbie=>[6, 12, 18, 24, 30, 36, 42, 48, 54, 60, 66, 72, 78, 84, 90, 96], :mike=>[1, 7, 13, 19, 25, 31, 37, 43, 49, 55, 61, 67, 73, 79, 85, 91, 97]}
+							</p>
+
+						We might clean up the output a little by using:
+
+							<p class="code">
+								counts.each {|k, v| p k, v}
+							</p>
+
+							<p class="output">
+							:adam<br>
+							[2, 8, 14, 20, 26, 32, 38, 44, 50, 56, 62, 68, 74, 80, 86, 92, 98]<br>
+							:emily<br>
+							[3, 9, 15, 21, 27, 33, 39, 45, 51, 57, 63, 69, 75, 81, 87, 93, 99]<br>
+							:sarah<br>
+							[4, 10, 16, 22, 28, 34, 40, 46, 52, 58, 64, 70, 76, 82, 88, 94, 100]<br>
+							:ken<br>
+							[5, 11, 17, 23, 29, 35, 41, 47, 53, 59, 65, 71, 77, 83, 89, 95]<br>
+							:barbie<br>
+							[6, 12, 18, 24, 30, 36, 42, 48, 54, 60, 66, 72, 78, 84, 90, 96]<br>
+							:mike<br>
+							[1, 7, 13, 19, 25, 31, 37, 43, 49, 55, 61, 67, 73, 79, 85, 91, 97]<br>
+							</p>
+
+						There you have it - a simple way of allocating all 100 chapters of the book to you and your team.  A way that you can easily adjust by adding or removing members, or by changing the number of chapters - all because we're using the #cycle method.<br><br>
+
+						What if you wanted to assign random chapters to you and your friends?  This gets a bit more complicated, and before I take you through this let me preface this by saying that there are likely better ways of getting to the result in this example.  I'd love to hear your feedback if you're aware of any!<br><br>
+
+						Here is the ending code:
+
+							<p class="code">
+								def randassign(team, count)<br>
+								    numbers = []<br>
+									i = 0<br>
+									count.times {|num| numbers[i] = i+1; i += 1}<br><br>
+
+									rands = {}<br><br>
+
+									j = 0<br>
+									team.cycle do |x|<br><br>
+
+										position = rand(count-j)<br><br>
+
+										if rands[x] == nil<br>
+											rands[x] = [numbers[position]]<br>
+										else <br>
+											rands[x] << numbers[position]<br>
+										end<br><br>
+
+										j+=1<br>
+										numbers.delete_at(position) <br>
+										break if numbers.count == 0<br>
+									end<br><br>
+
+									rands.each {|name, numbers| p name, numbers.sort}<br><br>
+
+								end<br><br>
+
+								randassign(team,50)
+							</p>
+
+							<p class="output">
+								:adam<br>
+								[2, 5, 10, 14, 16, 25, 44, 48, 50]<br>
+								:emily<br>
+								[1, 4, 7, 26, 28, 33, 38, 40]<br>
+								:sarah<br>
+								[17, 21, 22, 23, 32, 42, 43, 47]<br>
+								:ken<br>
+								[3, 13, 15, 19, 27, 29, 37, 39]<br>
+								:barbie<br>
+								[6, 11, 12, 18, 20, 36, 41, 45]<br>
+								:mike<br>
+								[8, 9, 24, 30, 31, 34, 35, 46, 49]<br>
+							</p>
+
+							Ran again, the output is:
+
+							<p class="output">
+								:adam<br>
+								[1, 17, 21, 23, 27, 30, 44, 47, 48]<br>
+								:emily<br>
+								[3, 7, 11, 19, 22, 38, 41, 43]<br>
+								:sarah<br>
+								[2, 5, 12, 16, 20, 25, 36, 45]<br>
+								:ken<br>
+								[8, 10, 14, 18, 28, 34, 35, 49]<br>
+								:barbie<br>
+								[4, 9, 31, 32, 37, 39, 42, 46]<br>
+								:mike<br>
+								[6, 13, 15, 24, 26, 29, 33, 40, 50]<br>
+							</p>
+
+						Alright, lets break this down.
+
+							<p class="code">
+								def randassign(team, count)<br>
+								    numbers = []<br>
+									i = 0<br>
+									count.times {|num| numbers[i] = i+1; i += 1}<br><br>
+							</p>
+
+						Here, on the first line, I am defining a method called 'randassign', that takes two paramaters as inputs - an array (which is meant to include the team names), and a count (which would be the total chapters to assign).  The next three lines build an array called 'numbers' with the numbers 1 through 'count' as objects.
+
+							<p class="code">
+								rands = {}
+							</p>
+
+						This line just establishes an empty hash that will ultimately hold each team member name as a key, with corresponding arrays of chapter numbers as values.<br><br>
+
+						Now comes our implementation of #cycle:
+
+							<p class="code">
+									j = 0<br>
+									team.cycle do |x|<br><br>
+
+										position = rand(count-j)<br><br>
+
+										if rands[x] == nil<br>
+											rands[x] = [numbers[position]]<br>
+										else <br>
+											rands[x] << numbers[position]<br>
+										end<br><br>
+
+										j+=1<br>
+										numbers.delete_at(position) <br>
+										break if numbers.count == 0<br>
+									end
+							</p>
+
+						What are we trying to do here?  Well, the idea is that, every time we allocate a random number to a team member, that number will be deleted from the 'numbers' array, so that when we move to the next team member we have a smaller base to choose from and will avoid allocating the same number.  Lets start at the top:
+
+							<p class="code">
+									j = 0<br>
+									team.cycle do |x|<br><br>
+
+									position = rand(count-j)
+							</p>
+
+						We've established a counter 'j' which will be incremented every time we iterate over a team member name using the #cycle method.  With every iteration, we establish a position, which is set to a random number between 0 and 'count' using <b>rand(count-j)</b>.  As you can see, as 'j' is incremented, the random number being generated will have a smaller and smaller range of possible values.<br><br>
+						Next, we have:
+
+							<p class="code">
+								if rands[x] == nil<br>
+									rands[x] = [numbers[position]]<br>
+								else <br>
+									rands[x] << numbers[position]<br>
+								end
+							</p>		
+
+						We're asking, does the <i>rands</i> hash include a key with the current name, and is its value 'nil'?  If so, set the value of that key equal to an array that includes the object from the 'numbers' array at the position calculated with the rand function.  If not (meaning this key already has a value that is an array), then add the object from the 'numbers' array to the value.<br><br>
+
+						The next 3 lines are really important:
+
+							<p class="code">
+
+									j+=1<br>
+									numbers.delete_at(position) <br>
+									break if numbers.count == 0<br>
+								end
+							</p>
+
+						Here we increase 'j' so that in our next iteration, the 'rand' function has fewer numbers to select from.  Then we delete the object in the numbers array at the current position.  This is crucial because it means that chapter number is no longer available to be allocated to another team member.  Lastly, we break the #cycle method once there are no more objects in the numbers array.<br><br>
+
+						Finally, the last line of code just outputs the completed <i>rand</i> hash in a clean, sorted manner:
+
+							<p class="code">
+								rands.each {|name, numbers| p name, numbers.sort}
+							</p>
+
+						Try it for yourself!<br><br>
+
+						I had a lot of fun working through this exercise and learning about #cycle.  Feel free to tell me my example is terrible and that there are better ways of doing that.  Hopefully you learned something from this post!
+
+
+						</p>
+
+				</div>
+		</section>
+
+		<footer>
+			<span><a href="#">back to top</a><span><br><br>
+			<span>Copyright: Gary Hammell 2014</span>
+		</footer>
+
+	</body>
+
+
+
+</html>
