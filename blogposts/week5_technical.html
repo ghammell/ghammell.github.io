@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="../blogs.css">
+	</head>
+	<body class="wrapper">
+		<div id="top">
+			<section>
+				<h1 id="hello" class="banda">GHammell's Blog</h1>
+			</section>
+
+			<nav id="links">
+				<ol>
+					<div id="linkspace">
+						<li id="firstlink"><a href="../index.html">Home</a></li>
+					</div>
+				</ol>
+			</nav>
+
+			<nav id="external">
+				<a href="https://www.facebook.com/gary.hammell.5" class="ext"><img src="../unit1_projects/images/asset.f.logo.lg.png"></a>
+				<a href="http://www.linkedin.com/pub/gary-hammell/53/574/352/" class="ext"><img src="../unit1_projects/images/linkedin.png"></a>
+				<a href="https://twitter.com/ghammell1"><img src="../unit1_projects/images/twitter.png" class="ext"></a>
+				<a href="https://plus.google.com/+GaryHammell1"><img src="../unit1_projects/images/gplus.png" class="ext"></a>
+				<a href="https://github.com/ghammell"><img src="../unit1_projects/images/github.png" class="ext"></a>
+			</nav>
+		</div>
+
+		<section id="main">
+			<h1 id="welcome" class="banda">Week 5 Technical Blog</h1>
+			<h5 id="maintag">Using Ruby classes to manage headcount</h5>
+		</section>
+
+		<section id="blog">
+				<div id="words">
+						<p>
+							<h3>What is a Ruby class?</h3><br>
+
+							As a beginner Rubyist, your capabilities will increase significantly once you understand how to build and manage classes.  So, what is a class?  Every object within ruby is part of a class.  In IRB, if you were to run <b>[1,2,3].class</b>, the output would be <b><i>Array</i></b>.  Likewise, if you run <b>{:name => "Joe"}.class</b>, the output will be <b><i>Hash</i></b>.<br><br>
+
+							Every object exists within a class, and that class includes instance methods that can be run on objects of that class.  For example, "<b>.include?</b>" is an instance method within the array class.  Running <b>[1,2,3].include?(3)</b> yields 'True'.  The code behind the "<b>.include?</b>" method is written within the scope of the <b><i>Array</i></b> class, and so the "<b>.include?</b>"" method can be run on any instance of an array.<br></br>
+
+							Once you've built your own class, you can create instances of that class, just like <b>[1,2,3]</b> is an instance of <b><i>Array</i></b>.  Within your class you can create methods that are unique to instances of that class.  As a simple example, lets say we created a class called <b>Cars</b>.  You might then define a method within that class called <b>honk</b>, that, when called on an instance of <b>Cars</b>, returns the string "Honk!".<br><br>
+
+							In my current role as a finance analyst, one of the worst parts of my jobs is keeping track of headcount for the businesses that I support.  I'm going to walk you through the creation of a class that will help manage employees and expenses in our fictional company <b>Hello Mellon, Inc.</b><br><br>
+
+							<h3>Creating a class and instances of that class</h3><br>
+
+							Creating a class is super simple.  Lets call ours 'Headcount':
+
+								<p class="code">
+									class Headcount<br>
+									end
+								</p>
+
+							There you go!  We've created a class called 'headcount'.  Alllrightt!  Now, lets create some <i>instances of</i> that class:
+
+								<p class="code">
+									gary = Headcount.new<br>
+									bob = Headcount.new<br>
+									craig = Headcount.new
+								</p><br>
+
+							<h3>Initializing</h3><br>
+
+							Cool, now we've got three objects - gary, bob, and craig - that are each an instance of our Headcount class.  Let's refer to these objects as 'employees' from now on.  So, what can we really do with our employees at this point?  Not a whole lot.  Lets fix that!  When managing headcount, it is important for each employee in the database to have a first name, last name, and start date.  If we were building a real app, we'd want these attributes to be <i><b>required inputs</b></i> when creating a new employee in a system.  In order to require certain attributes when a new instance of Headcount is created, we need to use the <b><i>initialize</b></i> method:
+
+								<p class="code">
+									class Headcount<br><br>
+									&nbsp;&nbsp;def initialize(firstname, lastname, startdate)<br>
+									&nbsp;&nbsp;end<br><br>
+									end
+								</p>
+
+							Now if we ran <b>gary = Headcount.new</b>, we'd receive this error message:
+
+								<p class="output">
+									<i>in `initialize': wrong number of arguments (0 for 3) (ArgumentError)</i>
+								</p>
+
+							This message is basically saying "Hang on there partner!  In order to create an instance of Headcount, you need to input some basic information!  <i>Three</i> tidbits of information, in fact.  You input <i>zero</i>!" And that's because we didn't <b>initialize</b> the 'gary' instance of Headcount, meaning, we didn't input the required attributes of 'gary' when creating 'gary'.  Let's give 'gary' some attributes:
+
+								<p class="code">
+									gary = Headcount.new("Gary", "Hammell", "8/4/2014")
+								</p>
+
+							No error?  Great.  So, we now have a working instance of Headcount, called 'gary'.  Ok, so <i>now</i> what can we do with this?  Again, not much yet!  In any decent headcount system, you'll want to be able to easily see certain attributes of a specific employee.  So, if we wanted to see gary's last name, how could we do that?<br><br>
+
+							<h3>Instance Variables</h3>
+
+							Through the use of <b>instance variables</b> of course!  An instance variable is similiar to any other variable, except that it is only available within the scope of the class that it is defined in.  Let's create some, and then I'll walk you through it:
+
+								<p class="code">
+									class Headcount<br><br>
+									&nbsp;&nbsp;def initialize(firstname, lastname, startdate)<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;@firstname = firstname<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;@lastname = lastname<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;@startdate = startdate<br>
+									&nbsp;&nbsp;end<br><br>
+									end	
+								</p>
+
+							What the heck is this?  Alright, each of the variables with an '@' in front of it is an <b>instance variable</b>.  Putting the '@' in front of the variable name will allow us to access that variable from anywhere within the scope of the Headcount class.  It'll be easier to see as we progress through this exercise, but think about it for a second.  If we created a method <i>outside</i> of the Headcount class, and in that method we created a variable, that variable is not accessible from anywhere outside of that method.  <i>Inside</i> a class, it's very useful to be able to access the same variables from different methods.  <b>Particularly when those variables are set equal to the required inputs</b>, which is what we did above by setting each instance variable equal to the corresponding user input.  Basically, now I can use the first name of the employee in any other method within Headcount, via the <b>@firstname</b> variable.<br><br>
+
+							<h3>Instance Methods</h3><br>
+
+							Ok, so CAN WE DO ANYTHING YET?  Not quite.  We need to write some <b>instance methods</b> that, when called on an instance of Headcount, will perform some actions for us.  There is no tag for an instance method like there is for an instance variable (the '@'), rather instance methods are just methods defined within a class, that can be called on specific instances of that class.  Let's add a method called <b>firstname</b> below our initialize method:
+
+								<p class="code">
+									class Headcount<br><br>
+									&nbsp;&nbsp;def initialize(firstname, lastname, startdate)<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;@firstname = firstname<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;@lastname = lastname<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;@startdate = startdate<br>
+									&nbsp;&nbsp;end<br><br>
+
+									&nbsp;&nbsp;def firstname<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;@firstname<br>
+									&nbsp;&nbsp;end<br><br>
+
+									end	
+								</p>
+
+							Wooohooo!  We've got some functional code!  Let's try it out.  Run:
+
+								<p class="code">
+									gary = Headcount.new("Gary", "Hammell", "8/4/2014")<br>
+									puts gary.firstname
+								</p>
+
+								<p class="output">
+									Gary
+								</p>
+
+							Gnarrrr!  By calling the <b>firstname</b> method on 'gary', we are accessing the corrseponding code within the Headcount class.  All this method does is return the instance variable <b>@firstname</b>, which was set equal to the user input!  Likewise, we can define methods to return @lastname and @startdate:
+
+								<p class="code">
+									class Headcount<br><br>
+									&nbsp;&nbsp;def initialize(firstname, lastname, startdate)<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;@firstname = firstname<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;@lastname = lastname<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;@startdate = startdate<br>
+									&nbsp;&nbsp;end<br><br>
+
+									&nbsp;&nbsp;def firstname<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;@firstname<br>
+									&nbsp;&nbsp;end<br><br>
+
+									&nbsp;&nbsp;def lastname<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;@lastname<br>
+									&nbsp;&nbsp;end<br><br>
+
+									&nbsp;&nbsp;def startdate<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;@startdate<br>
+									&nbsp;&nbsp;end<br><br>
+
+									end	
+								</p>
+
+								Now run:
+
+								<p class="code">
+									gary = Headcount.new("Gary", "Hammell", "8/4/2014")<br>
+									puts gary.firstname<br>
+									puts gary.lastname<br>
+									puts gary.startdate<br>
+								</p>
+
+								<p class="output">
+									Gary<br>
+									Hammell<br>
+									8/4/2014<br>
+								</p>
+
+							Pretty awesome.  I think we can simplify things, though.<br><br>
+
+							<h3>attr_accessor</h3><br>
+
+							Let's say you messed up, and input the last name 'Hammell', even though my real last name is 'THUNDERCLAP'.  You've already created 'gary', so how could we go about changing the last name?  You might try:
+
+								<p class="code">
+									gary.lastname = "THUNDERCLAP"
+								</p>
+
+							Except you'll get:
+
+								<p class="output">
+									undefined method `lastname=' for #<Headcount:0x00000101090388> (NoMethodError)
+								</p>
+
+							You see, the problem with the simple methods we created above is that there is no way to adjust the output value of those methods.  They're stuck on the instance variables that they return.  One way around this is to define a new method:
+
+								<p class="code">
+									def lastname=(lastname)<br>
+									&nbsp;&nbsp;@lastname=lastname<br>
+									end
+								</p>
+
+							Notice the "<b>=</b>" in the method name.  This method is basically allowing us to reset the @lastname instance variable by taking a new lastname as an input, and resetting the instance variable to that input.  So now, if we ran:
+
+								<p class="code">
+									gary = Headcount.new("Gary", "Hammell", "8/4/2014")<br>
+									puts gary.lastname<br>
+									gary.lastname = "THUNDERCLAP"<br>
+									puts gary.lastname<br>
+								</p>
+
+							We'd get:
+
+								<p class="output">
+									Hammell<br>
+									THUNDERCLAP
+								</p>
+
+							Great, but thats a lot of code just to be able to pull and change the last name.  To simplify this task, we can use the <i>attribute accessor</i> methods.  Using attribute accessor methods is a really easy way to access and modify instance variables within a class.  We can essentially replace all of this code:
+
+								<p class="code">
+									def lastname<br>
+									&nbsp;&nbsp;@lastname<br>
+									end<br><br>
+
+									def lastname=(lastname)<br>
+									&nbsp;&nbsp;@lastname=lastname<br>
+									end<br>
+								</p>
+
+							With this code:
+
+								<p class="code">
+									attr_accessor :lastname
+								</p>
+
+							Let's do that for each of our simple methods.  Our total code now looks like this:
+
+								<p class="code">
+									class Headcount<br><br>
+
+									&nbsp;&nbsp;attr_accessor :firstname, :lastname, :startdate<br><br>
+
+									&nbsp;&nbsp;def initialize(firstname, lastname, startdate)<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;@firstname = firstname<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;@lastname = lastname<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;@startdate = startdate<br>
+									&nbsp;&nbsp;end<br><br>
+
+									end		
+
+								</p>
+
+							Just to test, lets try this out again:
+
+								<p class="code">
+									gary = Headcount.new("Gary", "Hammell", "8/4/2014")<br>
+									puts gary.lastname<br>
+									gary.lastname = "THUNDERCLAP"<br>
+									puts gary.lastname<br>
+								</p>
+
+							Output:										
+
+								<p class="output">
+									Hammell<br>
+									THUNDERCLAP
+								</p>
+
+							Still working!  Oh yeah.  But how?  Well, by using the syntax <b>:lastname</b>, for example, the <b>attr_accessor</b> method knows to toggle the <b>@lastname</b> instance variable.  For each of the symbols listed after 'attr_accessor', the corresponding instance variables are accessed from the initialize method.  Now you can call <b>gary.lastname</b> to receive an output, or you can perform <b>gary.lastname = "THUNDERCLAP"</b> to reset the last name instance variable.<br><br>
+
+							Alright, lets step things up a notch.<br><br>
+
+							<h3>More instance methods</h3>
+
+							We want this to be a well rounded headcount application, so lets require a couple extra inputs when creating a new employee:  base salary, bonus, and grade level.
+
+								<p class="code">
+									class Headcount<br><br>
+
+									&nbsp;&nbsp;attr_accessor :firstname, :lastname, :base, :bonus, :grade, :startdate<br><br>
+
+									&nbsp;&nbsp;def initialize(firstname, lastname, base, bonus, grade, startdate)<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;@firstname = firstname<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;@lastname = lastname<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;@base = base<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;@bonus = bonus<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;@grade = grade<br>													
+									&nbsp;&nbsp;&nbsp;&nbsp;@startdate = startdate<br>
+									&nbsp;&nbsp;end<br><br>
+
+									end		
+
+								</p>
+
+							As the manager of Hello Mellon, Inc. I want to be able to tell how much my employees are costing me in compensation expense each month.  We now have base salary and bonus as required inputs, but what could we do to output the monthly cost of a specific employee?  Lets write a method!  Try this out (remember, this is all within the Headcount class):
+
+								<p class="code">
+									def monthly_exp<br>
+									&nbsp;&nbsp;ben_tax_rate = 0.185<br>
+									&nbsp;&nbsp;(@base * (1+@bonus) * (1+ben_tax_rate) / 12).to_i<br>
+									end
+								</p>			
+
+							Not too bad!  What we did here was create an instance method called 'monthly_exp' inside the Headcount class that we can now call on any new Headcount object we create.  The code starts off by setting a benefits & tax rate of 18.5%.  Then, in the following equation, it takes the value stored in the @base instance variable, and grosses it up by the annual bonus amount.  That total value is then grossed up by the benefits and tax rate, and is then divided by 12 to get the monthly expense.<br><br>
+
+							Let's try it out:
+
+								<p class="code">
+									gary = Headcount.new("Gary", "Hammell", 500000, 0.3, 8, "8/4/2014")<br>
+									<i>#that's right, $500000 / year baby!  ..maybe someday...</i><br><br>
+									puts gary.monthly_exp
+								</p>
+
+								<p class="output">
+									64187
+								</p>
+
+							Damn, that's a lot of cash money for one month.  We <i>could</i> change the method to output the value as a string, formatted like '$64,187', but that would make it more difficult to access from other methods within the Headcount class.  That's a challenge for another day.<br><br>
+
+							Let's also create a method to calculate the daily expense of an employee, which uses the 'monthly_exp' method.  Let's add this to our Headcount class:
+
+								<p class="code">
+									def daily_exp<br>
+									&nbsp;&nbsp;monthly_exp * 12 / 365<br>
+									end
+								</p>
+
+							And try:
+
+								<p class="code">
+									gary.daily_exp
+								</p>
+
+								<p class="output">
+									2110
+								</p>
+
+							Nice.<br><br>
+
+							What if we wanted to see the amount of money that Hello Mellon will be paying for an employee for the rest of the year?  Let's try out another method!  This is going to get a little bit trickier.  Before we write the method, lets switch a couple things up.  First, lets add the code
+
+								<p class="code">
+									require 'date'
+								</p>
+
+							to the top of our program.  I won't get too into this, but basically this allows us to access additional methods that are already defined within a different class, Date.  Now, lets also switch up our required parameters again.  Lets break 'startdate' into three paramaters 'year', 'month', and 'day' in our initialize method.  So, now our code looks like this:
+
+								<p class="code">
+									require 'date'<br><br>
+
+									class Headcount<br><br>
+
+									&nbsp;&nbsp;attr_accessor :firstname, :lastname, :base, :bonus, :grade, :startdate<br><br>
+
+									&nbsp;&nbsp;def initialize(firstname, lastname, base, bonus, grade, startyear, startmonth, startday)<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;@firstname = firstname<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;@lastname = lastname<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;@base = base<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;@bonus = bonus<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;@grade = grade<br>													
+									&nbsp;&nbsp;&nbsp;&nbsp;@startdate = startdate<br>
+									&nbsp;&nbsp;end<br><br>
+
+									&nbsp;&nbsp;def monthly_exp<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;ben_tax_rate = 0.185<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;(@base * (1+@bonus) * (1+ben_tax_rate) / 12).to_i<br>
+									&nbsp;&nbsp;end<br><br>		
+
+									&nbsp;&nbsp;def daily_exp<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;monthly_exp * 12 / 365<br>
+									&nbsp;&nbsp;end<br><br>												
+
+									end		
+
+								</p>
+
+							Great.  The only problem is that the @startdate instance variable in our initialize method is now set to a value that doesn't exist.  Before, this variable was set to a string input, like "8/4/2014".  Now, we want this instance variable to set equal to an <i>actual date value</i>, using the year, month, and day inputs.  To do this, lets change the value of @startdate:
+
+								<p class="code">
+									@startdate = Date.civil(startyear,startmonth,startday)
+								</p>
+
+							Now, upon initialization, we're creating an instance variable @startdate, that is set to an actual date value created by the Date.civil method.  The Date.civil method takes three inputs - a year, a month, and a day - and returns a date value that functions like a number, as opposed to a string.<br><br>
+
+							Ok, so our code looks like this:
+
+								<p class="code">
+									require 'date'<br><br>
+
+									class Headcount<br><br>
+
+									&nbsp;&nbsp;attr_accessor :firstname, :lastname, :base, :bonus, :grade, :startdate<br><br>
+
+									&nbsp;&nbsp;def initialize(firstname, lastname, base, bonus, grade, startyear, startmonth, startday)<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;@firstname = firstname<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;@lastname = lastname<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;@base = base<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;@bonus = bonus<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;@grade = grade<br>													
+									&nbsp;&nbsp;&nbsp;&nbsp;@startdate = Date.civil(startyear,startmonth,startday)<br>
+									&nbsp;&nbsp;end<br><br>
+
+									&nbsp;&nbsp;def monthly_exp<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;ben_tax_rate = 0.185<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;(@base * (1+@bonus) * (1+ben_tax_rate) / 12).to_i<br>
+									&nbsp;&nbsp;end<br><br>	
+
+									&nbsp;&nbsp;def daily_exp<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;monthly_exp * 12 / 365<br>
+									&nbsp;&nbsp;end<br><br>																
+
+									end		
+
+								</p>
+
+							Alright!  Remember that method we were going to work on, where it calculates the expense remaining in the year for an individual employee?  Lets add this to our Headcount class:
+
+								<p class="code">
+									def remaining_cost<br>
+									&nbsp;&nbsp;yearend = Date.civil(2014,12,31)<br>
+									&nbsp;&nbsp;cost = if @startdate < Date.today<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(yearend - Date.today) * daily_exp<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else (yearend - @startdate) * daily_exp<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end.to_i<br>
+									end
+								</p>
+
+							What are we doing here?  Well, first we define a new method called <b>remaining_cost</b>.  From there, we set a variable 'yearend' equal to the last day of the year, using the Date.civil method.  Then we run an if / else statement.  If the employee started earlier than today, calculate the remaining cost between today and the end of the year.  Else, calculate the remaining cost between the employee start date (which could be today or the future) and the end of the year.<br><br>
+
+							Remember how I said that using 'Date.civil' creates a date value that functions like a number?  That's why something like <b>(yearend - Date.today)</b> works.  That equation returns the number of days between the two dates.<br><br>
+
+							Let's try it:
+
+								<p class="code">
+									p gary.remaining_cost
+								</p>
+
+								<p class="output">
+									314390
+								</p>
+
+							<h5><i>(as of 7/8/2014.. also, disclaimer, these values might not be 100% because I am not accounting for cents)</i></h5>
+
+
+							Awesome.  So now we've got three great methods to help us manage Hello Mellon's expenses.  But each of these methods only provides us information on individual employees.  What if we wanted a report of monthly expense by employee?  Or what if we wanted to know our total employee count?  For these functions, my friends, we need <b>class methods</b><br><br>
+
+							<h3>Class Methods</h3>
+
+							Class methods are methods that are called on classes <i>themselves</i>.  Until now, we've been writing instance methods that are called on specific objects of a class, like <b>gary.firstname</b>.  A class method would look something like <b>Headcount.report</b>.  See how the method is called on the class itself?  Lets jump right in to some applications.<br><br>
+
+							In order to write effective class methods, we need some class variables.  A <b>class variable</b> is a variable that is the same between all instances of a class.  It is a global variable within the context of a single class, and its syntax requires '@@' in front of the variable name.  Let's add the following to our code, just above the <i>attr_accessor</i> method:
+
+								<p class="code">
+									@@employee_count = 0<br>
+									@@employees = {}
+								</p>
+
+							What we're doing here is basically saying, '<i>upon inception of this class</i>, create a class variable called employee_count, set to a value of 0.  Create a class variable called employees, set equal to an empty hash'.<br><br>
+
+							Let's also add the following code into our <i>initialize</i> method (don't worry, we'll cover everything here):
+
+								<p class="code">
+									@id = (rand(1000) + 1).to_s.rjust(6,'0')<br>									
+									@@employee_count += 1<br>
+									@@employees[@id] = <br>
+									&nbsp;&nbsp;&nbsp;{firstname: firstname, <br>
+									&nbsp;&nbsp;&nbsp;lastname: lastname, <br>
+									&nbsp;&nbsp;&nbsp;base: base, <br>
+									&nbsp;&nbsp;&nbsp;bonus: bonus, <br>
+									&nbsp;&nbsp;&nbsp;grade: grade, <br>
+									&nbsp;&nbsp;&nbsp;function: function, <br>
+									&nbsp;&nbsp;&nbsp;startdate: startdate}	<br>
+								</p>
+
+							Our code is getting longer!
+
+								<p class="code">
+									require 'date'<br><br>
+
+									class Headcount<br><br>
+
+									&nbsp;&nbsp;@@employee_count = 0<br>
+									&nbsp;&nbsp;@@employees = {}<br><br>
+
+									&nbsp;&nbsp;attr_accessor :firstname, :lastname, :base, :bonus, :grade, :startdate<br><br>
+
+									&nbsp;&nbsp;def initialize(firstname, lastname, base, bonus, grade, startyear, startmonth, startday)<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;@firstname = firstname<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;@lastname = lastname<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;@base = base<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;@bonus = bonus<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;@grade = grade<br>													
+									&nbsp;&nbsp;&nbsp;&nbsp;@startdate = Date.civil(startyear,startmonth,startday)<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;@id = (rand(1000) + 1).to_s.rjust(6,'0')<br><br>						
+									&nbsp;&nbsp;&nbsp;&nbsp;@@employee_count += 1<br><br>
+									&nbsp;&nbsp;&nbsp;&nbsp;@@employees[@id] = <br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{firstname: firstname, <br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lastname: lastname, <br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;base: base, <br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bonus: bonus, <br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;grade: grade, <br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;function: function, <br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;startdate: startdate}	<br>
+									&nbsp;&nbsp;end<br><br>
+
+									&nbsp;&nbsp;def monthly_exp<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;ben_tax_rate = 0.185<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;(@base * (1+@bonus) * (1+ben_tax_rate) / 12).to_i<br>
+									&nbsp;&nbsp;end<br><br>	
+
+									&nbsp;&nbsp;def daily_exp<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;monthly_exp * 12 / 365<br>
+									&nbsp;&nbsp;end<br><br>		
+
+									&nbsp;&nbsp;def remaining_cost<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;yearend = Date.civil(2014,12,31)<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;cost = if @startdate < Date.today<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(yearend - Date.today) * daily_exp<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else (yearend - @startdate) * daily_exp<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end.to_i<br>
+									&nbsp;&nbsp;end<br><br>																						
+
+									end		
+
+								</p>
+
+							Alright, what did we do now?  Well,<br><br>
+								<ul>
+									<li>we added an instance variable <b>@id</b> to our initialize method.  This variable is set equal to a random number between 1 and 1000, and will act as a unique identifier for each of Hello Mellon's employees.</li><br>
+									<li>we added <b>@@employee_count +=1</b> to our initialize method.  Now, everytime we create a new employee, this counter will increase by 1</li><br>
+									<li>and with the <b>@@employees</b> section of our initialize method, every time we create a new employee, the <b>@@employees</b> hash will be updated with a key, set equal to the employees ID, and a value, set equal to another hash that includes all of the other employee information.</li>
+								</ul><br><br>
+
+							This may seem like a lot, so I highly recommend reviewing all of the above code to ensure that you understand it's purpose before continuing in this exercise.<br><br>
+
+							Alright!  Now lets make a method that spits out a report of all employees within Hello Mellon.  Our first class method!!  Notice how the method is defined using the syntax <i>self</i>.method_name:
+
+								<p class="code">
+									def self.summary<br>
+									&nbsp;&nbsp;&nbsp;puts "Hello Mellon has #{@@employee_count} employees:"<br>
+									&nbsp;&nbsp;&nbsp;puts<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@@employees.each do |id, info|<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;puts "ID: #{id}"<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;info.each do |data,  value|<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print "#{data}: #{value}; "<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;puts puts<br>
+									&nbsp;&nbsp;&nbsp;end<br>
+									end<br>
+								</p>					
+
+							The intent of this method is to output a summary detailing each of our employees information.  Until now, we've only created one employee, so lets create a few more:
+
+								<p class="code">
+									gary = Headcount.new("Gary", "Hammell", 500000, 0.3, 8, 2014, 8, 4)<br>
+									craig = Headcount.new("Craig", "Hammell", 300000, 0.25, 7, 2014, 10, 1)<br>
+									bob = Headcount.new("Bob", "Hammell", 250000, 0.2, 7, 2014, 9, 2)<br>
+									jack = Headcount.new("Jack", "Hammell", 400000, 0.3, 8, 2014, 11, 20)<br>
+									angela = Headcount.new("Angela", "Hammell", 200000, 0.2, 6, 2014, 2, 28)<br>
+									<i># It's a family company</i>	
+								</p>
+
+							Now, if we run:
+
+								<p class="code">
+									Headcount.summary
+								</p>		
+
+							We get:
+
+								<p class="output">
+									Hello Mellon has 5 employees:<br><br>
+
+									ID: 000764<br>
+									firstname: Gary; lastname: Hammell; base: 500000; bonus: 0.3; grade: 8; startdate: 2014-08-04; <br><br>
+
+									ID: 000362<br>
+									firstname: Craig; lastname: Hammell; base: 300000; bonus: 0.25; grade: 7; startdate: 2014-10-01; <br><br>
+
+									ID: 000222<br>
+									firstname: Bob; lastname: Hammell; base: 250000; bonus: 0.2; grade: 7; startdate: 2014-09-02; <br><br>
+
+									ID: 000964<br>
+									firstname: Jack; lastname: Hammell; base: 400000; bonus: 0.3; grade: 8; startdate: 2014-11-20; <br><br>
+
+									ID: 000679<br>
+									firstname: Angela; lastname: Hammell; base: 200000; bonus: 0.2; grade: 6; startdate: 2014-02-28; <br><br>
+								</p>
+
+							Schwiiiiing!  How about if we wanted to report the remaining cost by employee, as well as a total?<br><br>
+
+							<h3>Object Space</h3><br>
+
+							We might write something like:
+
+								<p class="code">
+									def self.total_costs<br>
+									&nbsp;&nbsp;&nbsp;puts "Hello Mellon remaining headcount costs by employee for the current year:"<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;puts<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;total = <b>ObjectSpace.each_object(Headcount)</b>.inject(0) do |result, employee| <br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;puts "#{employee.firstname} #{employee.lastname}: #{employee.remaining_cost}"<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;result += employee.remaining_cost<br>
+									&nbsp;&nbsp;&nbsp;end<br>
+									&nbsp;&nbsp;&nbsp;puts<br>
+									&nbsp;&nbsp;&nbsp;puts "The total remaining headcount costs for the year is #{total}"<br>
+									end	<br>
+								</p>
+
+							And by running:
+
+								<p class="code">
+									Headcount.total_costs
+								</p>
+
+							We'd get:
+
+								<p class="output">
+									Hello Mellon remaining headcount costs by employee for the current year:<br><br>
+
+									Angela Hammell: 137104<br>
+									Jack Hammell: 69208<br>
+									Bob Hammell: 116760<br>
+									Craig Hammell: 110747<br>
+									Gary Hammell: 314390<br><br>
+
+									The total remaining headcount costs for the year is 748209<br>
+								</p>
+
+							See if you can figure out what ObjectSpace is.  Honestly, I need to do more research myself.  But the bigger question is, why did we have to use ObjectSpace to iterate through each object, as opposed to just iterating through the hash that contains all the employees?  There are two reasons: <br><br>
+
+							<ul>
+								<li> We did not include a value in the employee info hash that represented the remaining expense for that employee, so there would have been nothing to toggle if we iterated through that hash</li><br>
+								<li> You might be thinking, 'well then why not just add the remaining expense value to each employee's information hash?', and the answer is that I wanted the output of the remaining_cost method to remain dynamic, meaning that it would change every day.  If we stored a value in the hash, then it would be a static value that might not actually represent the remaining expense in the year.  So, I needed to figure out a way to iterate through each employee and at the same time run employee.remaining_cost.</li>
+							</ul>
+
+							<h3>Thanks</h3>
+
+							I really hope you enjoyed this tutorial.  There is a lot more that could be built into this class, and there is definitely room for improvement in my current code, but I think this is a good starting point.  Hopefully someday I can build something like this into an awesome headcount app so that finance analysts like myself don't tear their hair out tying headcount out.<br><br>
+
+							Thanks!!
+
+						</p>
+
+				</div>
+		</section>
+
+		<footer>
+			<span><a href="#">back to top</a><span><br><br>
+			<span>Copyright: Gary Hammell 2014</span>
+		</footer>
+
+	</body>
+
+
+
+</html>
