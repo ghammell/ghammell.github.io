@@ -1,5 +1,5 @@
 .wrapper {
-	width: 95%;
+	width: 100%;
 	margin: 0 auto;
 }
 
@@ -13,7 +13,6 @@ body {
 	min-height: 80px;
 	border-bottom: 1px solid black;
 	padding: 1% 1% 0 1%;
-	position:fixed;
 	background: #eee;
 	width: 95%;
 	top: 0;
@@ -22,6 +21,11 @@ body {
 
 #nav {
 		border-bottom: 1px solid black;
+}
+
+#links {
+	overflow: auto;
+	white-space: nowrap;
 }
 
 #links a{
@@ -35,7 +39,6 @@ body {
 	text-transform: lowercase;
 	text-align: center;
 	padding: 2px;
-    min-width: 75px;
     transition: all 1s ease;
 }
 
@@ -68,7 +71,6 @@ body {
 #external img {
 	height: 30px;
 	opacity: .5;
-	transition: height 1s;
 	transition: opacity 1s;
 	position: relative;
 	top: 17px;
@@ -76,11 +78,11 @@ body {
 
 #external {
 	float:right;
+	max-width: 50px;
 }
 
 #external img:hover {
 	opacity: 1;
-	height: 35px;
 }
 
 #links:visited {
@@ -127,7 +129,7 @@ li #firstlink{
 #main {
 	width: 100%;
 	max-width: 960px;
-	margin: 104px auto 0px auto;
+	margin: 5px auto 0px auto;
 	background: #80CC99;
 	color: white;
 	text-align: center;

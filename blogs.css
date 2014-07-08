@@ -173,6 +173,12 @@ footer {
 	padding:15px;	
 	margin-right: auto;
 	margin-left: auto;
+	overflow: auto;
+	white-space: nowrap;
+}
+
+.code > span {
+	display: block;
 }
 
 .output {
@@ -185,6 +191,8 @@ footer {
 	color: blue;
 	margin-right: auto;
 	margin-left: auto;
+	overflow: auto;
+	white-space: nowrap;
 }
 
 
