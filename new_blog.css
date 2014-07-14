@@ -202,7 +202,8 @@ footer {
 	font-size: .75em;
 	color: #777;
 	text-align: center;
-	margin-bottom: 10px;
+	max-width: 940px;
+	margin: 10px auto;
 }
 
 #pics {
