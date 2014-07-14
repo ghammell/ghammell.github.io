@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="../blogs.css">
+	</head>
+	<body class="wrapper">
+		<div id="top">
+			<section>
+				<h1 id="hello" class="banda">GHammell's Blog</h1>
+			</section>
+
+			<nav id="links">
+				<ol>
+					<div id="linkspace">
+						<li id="firstlink"><a href="../index.html">Home</a></li>
+					</div>
+				</ol>
+			</nav>
+
+			<nav id="external">
+				<a href="https://www.facebook.com/gary.hammell.5" class="ext"><img src="../unit1_projects/images/asset.f.logo.lg.png"></a>
+				<a href="http://www.linkedin.com/pub/gary-hammell/53/574/352/" class="ext"><img src="../unit1_projects/images/linkedin.png"></a>
+				<a href="https://twitter.com/ghammell1"><img src="../unit1_projects/images/twitter.png" class="ext"></a>
+				<a href="https://plus.google.com/+GaryHammell1"><img src="../unit1_projects/images/gplus.png" class="ext"></a>
+				<a href="https://github.com/ghammell"><img src="../unit1_projects/images/github.png" class="ext"></a>
+			</nav>
+		</div>
+
+		<section id="main">
+			<h1 id="welcome" class="banda">Week 6 Technical Blog</h1>
+			<h5 id="maintag">Blocks, Procs, and Lambdas</h5>
+		</section>
+
+		<section id="blog">
+				<div id="words">
+						<p>
+
+							Blocks, Procs, and Lambdas are powerful aspects of the Ruby language.  Although they are similar in many ways, depending on your objective, it might make sense to choose one over the others.  So, what are each of them and how do they differ?<br><br>
+
+							<h3>Blocks & Procs</h3>
+
+							Lets say that we have an array of numbers that we want to adjust in several ways:
+
+								<p class="code">
+									nums = [1,2,3,4,5,6,7,8,9,10]
+								</p>
+
+							We might add 2 to every number by typing something like this:
+
+							<p class="code">
+								p nums.map! {|num| num + 2}
+							</p>
+
+							<p class="output">
+								[3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+							</p>
+
+							What did we do there, exactly?  Well, the map! method knows to iterate through each object within the nums array.  For each object in the array, the map! method executes the instructions passed to it in the <b>block</b> of code to the right (within the { }).  This block of code takes each object in the array as an input, assigns it the temporary variable name 'num', and then changes that num by adding 2.<br><br>
+
+							What's important to take away here, though, is that the instructions we passed to the map! method were in a block.  A ruby block is set of code that can be executed, and is one of the few items in ruby that is not considered an object.<br><br>
+
+							But what if our plan was to increment this array several times?  We might get tired of continually typing
+
+							<p class="code">
+								p nums.map! {|num| num + 2}
+							</p>
+
+							everytime we wanted to increment the array.  Instead, we could save those instructions as a <b>Proc</b> that we can access by name.  A proc is essentially just a block of code that is saved with a variable name to be accessed later.  We could establish a Proc that will increment our array like this:
+
+							<p class="code">
+								add_2 = Proc.new {|num| num + 2}
+							</p>
+
+							And now if we want to increment the array 3 times, we can just write:
+
+							<p class="code">
+								p nums.map!(&add_2)<br>
+								p nums.map!(&add_2)<br>
+								p nums.map!(&add_2)<br>
+							</p>
+
+							<p class="output">
+								[3, 4, 5, 6, 7, 8, 9, 10, 11, 12]<br>
+								[5, 6, 7, 8, 9, 10, 11, 12, 13, 14]<br>
+								[7, 8, 9, 10, 11, 12, 13, 14, 15, 16]<br>
+							</p>
+
+							By saving our set of instructions used to increment as a Proc, we can now just use the name of that proc to access the instructions, instead of typing the block over and over again.  This becomes more useful as the complexity of the block increases.  For example, we might create another proc that will tell us whether the numbers passed in are cold, warm or hot.  This code is a bit longer, so it would make sense to store it as a Proc if the intent was to use this same functionality several times:
+
+							<p class="code">
+								temp = Proc.new {|num| num > 12 ? "hot" : num.between?(9,12) ? "warm" : "cold"}<br><br>
+
+								p nums.map(&temp)
+							</p>
+
+							<p class="output">
+								["cold", "cold", "warm", "warm", "warm", "warm", "hot", "hot", "hot", "hot"]
+							</p>
+
+							<p class="code">
+								p nums.map!(&add_2)<br>
+								p nums.map(&temp)
+							</p>
+
+							<p class="output">
+								[9, 10, 11, 12, 13, 14, 15, 16, 17, 18]<br>
+								["warm", "warm", "warm", "warm", "hot", "hot", "hot", "hot", "hot", "hot"]
+							</p>
+
+							One thing to keep in mind is that in order to access the functionality of a proc when passing it to a method, you need to include the '&' in front of the proc name.  This basically tells the method that you want to access the proc's functionality, not just the proc itself as an object.<br><br>
+
+							As you can see, the use of Procs not only saves you time, but also prevents unnecessary repetition and can help make your code even easier to read.<br><br>
+
+							<h3>Procs vs. Lambdas</h3>
+
+							A <b>lambda</b> is another way of storing a block of code, and only differs from Procs slightly.  The two major differences between a lambda and a Proc are that:<br><br>
+
+							<ul>
+								<li>A lambda checks that the amount of arguments passed into it is correct.  For example, if a lambda expects 3 arguments to be passed in, and only 2 are, the code will not execute and will return an error.  If you pass in fewer arguments than are available for a Proc, a value of nil will automatically be applied to any unfulfilled arguments.  Any unexpected arguments will be ignored.</li><br>
+
+								<li>A lambda will 'return' back to a method that it is built into, whereas a Proc will break the calling method.  For example, if you access a lambda from within a method, and that lambda includes a 'return' function, it will break you back into the method it was called from, and any remaining code within the method will be run.  If you accessed a Proc from a method, and 'returned' from that Proc, you will break out of the method and the remaining code within that method will not be run.</li><br>
+							</ul>
+
+							To illustrate the second point, lets look at a method that utilizes a lambda:
+
+							<p class="code">
+								def greet(person)<br>
+								--greeting = <b>lambda</b> {return "Hey there #{person}!!  So great to talk to you!"}<br>
+								--puts greeting.call<br><br>
+
+								--"How are things going?"<br>
+								end<br><br>
+
+								puts greet("craig")
+							</p>
+
+							<p class="output">
+								Hey there craig!!  So great to talk to you!<br>
+								How are things going?
+							</p>
+
+							Everything looks good, right?  What if we replaced our lambda with a proc? Like so:
+
+							<p class="code">
+								def greet(person)<br>
+								--greeting = <b>Proc.new</b> {return "Hey there #{person}!!  So great to talk to you!"}<br>
+								--puts greeting.call<br><br>
+
+								--"How are things going?"<br>
+								end<br><br>
+
+								puts greet("craig")
+							</p>
+
+							<p class="output">
+								Hey there craig!!  So great to talk to you!
+							</p>
+
+							Notice how only the string within the Proc was returned, and not the second one like when we used a lambda?  That's because when returning out of a Proc, the method from which we accessed that Proc is broken out of.  Returning out of a lambda takes us right back to where we were within the method.<br><br>
+
+							As you can see, blocks, Procs, and lambdas are very powerful.  Which one you use at which point in time will be dictated by the functionality you are trying to build, and whether you'll want to re-use that functionality several times over.<br><br>
+
+							Thanks for reading!
+
+						</p>
+
+				</div>
+		</section>
+
+		<footer>
+			<span><a href="#">back to top</a><span><br><br>
+			<span>Copyright: Gary Hammell 2014</span>
+		</footer>
+
+	</body>
+
+
+
+</html>
