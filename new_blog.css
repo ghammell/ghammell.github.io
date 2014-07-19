@@ -7,6 +7,8 @@ body {
 	border-bottom: 1px solid black;
 	background: #eee;
 	font-family: arial;
+	display: inline;
+	height:100px;
 }
 
 #top {
@@ -20,16 +22,27 @@ body {
 }
 
 #nav {
-		border-bottom: 1px solid black;
+	border-bottom: 1px solid black;
 }
 
 #links {
 	overflow: auto;
 	white-space: nowrap;
-	max-width: 150px;
-	max-height:600px;
+	width: 15%;
+	max-height:603px;
 	float:left;
-	margin: 5px 0px 0px 10px;
+	margin: 10px auto 0px auto;
+	font-size: 12px;
+	border-bottom: 1px solid white;
+}
+
+.cluster {
+	padding: 0px;
+	margin: 0px 0px 20px 0px;
+	list-style-type: none;
+	border: 1px solid white;
+	border-left: none;
+	background: white;
 }
 
 #links a{
@@ -38,47 +51,48 @@ body {
 	margin: 5px;
 	background-color: #80CC99;
 	color: white;
-	border-radius: 30px 0px 0px 0px;
+/*	border-radius: 30px 0px 0px 0px;*/
 	border: 1px solid #66C285;
 	text-transform: lowercase;
 	text-align: center;
 	padding: 2px;
-	max-width: 150px;
+	/*max-width: 150px;*/
     transition: all 1s ease;
 }
 
 .weeks {
 	display: block;
 /*	float: left;*/
-	margin: 20px 5px 5px 5px;
+	margin: 5px;
 	background-color: white;
 	color: black;
-	border-radius: 0px 0px 0px 30px;
+/*	border-radius: 0px 0px 0px 30px;*/
 	border: 1px solid white;
 	text-transform: lowercase;
 	text-align: center;
 	padding: 2px;
-    max-width: 150px;
+  /*  max-width: 150px;*/
     transition: all 1s ease;
 }
 
 
 #links a:hover {
 	background-color: #005C1F;
-    min-width: 100px;
+/*    min-width: 100px;*/
 }
 
 .weeks:hover {
-	background-color: #777;
+/*	background-color: #777;*/
 /*	width: 20px;*/
 }
 
 #external img {
-	height: 30px;
+	height: 50px;
 	opacity: .5;
 	transition: opacity 1s;
 	position: relative;
-	top: 17px;
+	top: 10px;
+	right:50px;
 }
 
 #external {
@@ -132,8 +146,8 @@ li #firstlink{
 }
 
 #main {
-	width: 100%;
-	max-width: 940px;
+	width: 65%;
+/*	max-width: 940px;*/
 	margin: 10px auto 0px auto;
 	background: #80CC99;
 	color: white;
@@ -143,9 +157,9 @@ li #firstlink{
 }
 
 #about {
-	width: 100%;
+	width: 65%;
 	color: white;
-	max-width: 940px;
+/*	max-width: 940px;*/
 	background:#3D3D46;
 	margin: 0 auto 10px auto;
 	padding: 1%;
@@ -207,8 +221,8 @@ footer {
 }
 
 #pics {
-	width: 100%;
-	max-width: 940px;
+	width: 65%;
+/*	max-width: 940px;*/
 	text-align: center;
 	margin:0px auto 10px auto;
 /*	border: 1px solid #66C285;*/
@@ -244,20 +258,17 @@ footer {
 
 	#links li {
 	font-size: 12px;
-	width: 60px;
-	}
-
-	#links li:hover {
-	width: 80px;
 	}
 
 	#external img {
-	height: 20px;
-	}
+	height: 25px;
+	right:-10px;
+	}	
 
-	#external img:hover{
-	height: 30px;
-	}
+	#external {
+/*margin-left: 20px;*/
+}
+
 
 	#right {
 		display: inline;
@@ -267,9 +278,10 @@ footer {
 	#left {
 		width: 100%;
 		text-align: center;
+		font-size: 20px;
 	}
 
 	.weeks {
-		display: none;
+/*		display: none;*/
 	}
 }
