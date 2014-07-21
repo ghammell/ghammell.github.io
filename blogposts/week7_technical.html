@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="../blogs.css">
+	</head>
+	<body class="wrapper">
+		<div id="top">
+			<section>
+				<h1 id="hello" class="banda">GHammell's Blog</h1>
+			</section>
+
+			<nav id="links">
+				<ol>
+					<div id="linkspace">
+						<li id="firstlink"><a href="../index.html">Home</a></li>
+					</div>
+				</ol>
+			</nav>
+
+			<nav id="external">
+				<a href="https://www.facebook.com/gary.hammell.5" class="ext"><img src="../unit1_projects/images/asset.f.logo.lg.png"></a>
+				<a href="http://www.linkedin.com/pub/gary-hammell/53/574/352/" class="ext"><img src="../unit1_projects/images/linkedin.png"></a>
+				<a href="https://twitter.com/ghammell1"><img src="../unit1_projects/images/twitter.png" class="ext"></a>
+				<a href="https://plus.google.com/+GaryHammell1"><img src="../unit1_projects/images/gplus.png" class="ext"></a>
+				<a href="https://github.com/ghammell"><img src="../unit1_projects/images/github.png" class="ext"></a>
+			</nav>
+		</div>
+
+		<section id="main">
+			<h1 id="welcome" class="banda">Week 7 Technical Blog</h1>
+			<h5 id="maintag">SQL Injection</h5>
+		</section>
+
+		<section id="blog">
+				<div id="words">
+						<p>
+							Amongst a handful of what some people would consider drawbacks to SQL, one major issue in particular is SQL injection (SQLI).  SQLI is when a malicious user of an application imbeds SQL commands in their inputs to the application in an attempt to alter, extract, or delete information contained in the application's database.  For example, instead of appropriately filling out a 'name' field within a website's form, an attacker might instead input a line of SQL code.  This could enable them to access the database where their information would otherwise be stored, and where other user information currently resides.<br><br>
+
+							Clearly, SQLI is an issue.  The possibility that a hacker could obtain and alter company databases is a huge security risk.  Without some way of preventing SQLI, personal information is essentially up for grabs, and the information that companies rely on daily is at risk of being lost.  The loss of important databases could be a huge hurdle operationally for any company.<br><br>
+
+							Let's take a look at an example of SQLI.  There might be a field on a website that requires an 'id' input from the user, maybe to sign in to the website.  The SQL that would be run upon submitting that field could look something like this:
+
+							<p class="code">
+								SELECT * FROM userinfo WHERE id =" + user_input + ";
+							</p>
+
+							Where the variable user_input would be set equal to the id that the user input.  This querie would return all the information related to a specific user.  A hacker might fill out the id field with this code, as opposed to an actual id:
+
+							<p class="output">
+								1;DROP TABLE users
+							</p>
+
+							Effectively altering the SQL querie that is run to be:
+
+							<p class="code">
+								SELECT * FROM userinfo WHERE id=1;DROP TABLE users;
+							</p>
+
+							The hacker responsible for this attack doesn't care about any of the user information - it is unlikely that anything of meaning will be returned because the only id being toggled is id 1.  However, by including the 'DROP TABLE users' code at the end, the hacker is forcing the deletion of the table that stores all the user information.  This could be a huge hindrance to any company.<br><br>
+
+							Pretty crazy, right?  So, how can SQLI be prevented?  Input constraints, that's how.  By <b>setting input constraints</b>, you can ensure that the inputs a user is making are of the correct data type or syntax.  In our example above, had we somehow constrained the input to only allow integer values, then there wouldn't have been any problem - the user input would not have been accepted.  Constraints can be used to ensure user inputs are of the correct data type, length, or format, and can also be used to reject inputs with invalid characters like ';'.<br><br>
+
+							Also, <b>prepared statements</b> are a great way to ensure that a user inputting information is unable to alter the intent of the querie.  Basically, all of the SQL code is already established behind the scenes.  It is not created when the user makes an input, but instead already exists.  Prepared statements keep the user input seperate from the SQL code.  In our example above, had we used prepared statements, the only scenario in which an error would not have been returned is if there was an actual user id with a value of '1;DROP TABLE users'.
+
+						</p>
+
+				</div>
+		</section>
+
+		<footer>
+			<span><a href="#">back to top</a><span><br><br>
+			<span>Copyright: Gary Hammell 2014</span>
+		</footer>
+
+	</body>
+
+
+
+</html>
