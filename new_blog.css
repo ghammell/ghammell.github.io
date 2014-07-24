@@ -12,7 +12,6 @@ body {
 }
 
 #top {
-/*	min-height: 80px;*/
 	border-bottom: 1px solid black;
 	padding: 1% 1% 0 1%;
 	background: #4D4D4D;
@@ -34,7 +33,10 @@ body {
 	padding-top: 5px;
 	font-size: 12px;
 	border-bottom: 1px solid white;
-	background: #C2E7CE;
+	background: #efe5cb;
+	position:absolute;
+	bottom:0;
+	top:66px;
 }
 
 .cluster {
@@ -42,34 +44,35 @@ body {
 	margin: 0px 0px 20px 0px;
 	list-style-type: none;
 	border-left: none;
-	background: #C2E7CE;
+	background: #efe5cb;
 }
 
 #links a{
 	display: block;
 /*	float: left;*/
 	margin: 5px;
-	background-color: #80CC99;
+/*	background-color: #A2A099;*/
+	background: linear-gradient(#B5B3AD, #A2A099);
 	color: white;
 /*	border-radius: 30px 0px 0px 0px;*/
-	border: 1px solid #66C285;
+/*	border: 1px solid #66C285;*/
 	text-transform: lowercase;
 	text-align: center;
 	padding: 2px;
 	/*max-width: 150px;*/
 	position:relative;
-	top:0px;
-    transition: all .2s ease;
+	bottom:0px;
+    transition: all .2s;
 }
 
 .weeks {
 	display: block;
 /*	float: left;*/
 	margin: 5px;
-	background-color: white;
+	background: linear-gradient(white, white);
 	color: black;
 /*	border-radius: 0px 0px 0px 30px;*/
-	border: 1px solid white;
+/*	border: 1px solid white;*/
 	text-transform: lowercase;
 	text-align: center;
 	padding: 2px;
@@ -79,9 +82,9 @@ body {
 
 
 #links a:hover {
-	background-color: #005C1F;
+	background: linear-gradient(#82807A, #A2A099);
 	position:relative;
-	top:2px;
+	bottom:2px;
 /*    min-width: 100px;*/
 }
 
@@ -159,21 +162,23 @@ li #firstlink{
 
 
 #main {
-	max-width: 940px;
-	margin: 0 auto 0 auto;
+	width: 70%;
+	margin: 0;
 	background: #80CC99;
 	color: white;
 	text-align: center;
 	padding: 1%;
-	height:730px;
-	border-left: 1px solid black;
-	border-right: 1px solid black;
 	font-size: 14px;
 
 	background-image:url('unit1_projects/images/beach.jpg');
 	background-color:#cccccc;
 
-	overflow: auto;
+	overflow-y: auto;
+	position:absolute;
+	bottom:0;
+	top:66px;
+	left:15%;
+	z-index: -1;
 }
 
 #words {
@@ -270,10 +275,49 @@ footer {
 	vertical-align: middle;
 }
 
+#quicklinkssection {
+	width: 10%;
+	text-align: center;
+	font-size: 12px;
+	float:left;
+	position:relative;
+	top:15px;
+	left: 87%;
+	border-top-right-radius: 3px;
+	border-bottom-right-radius: 3px;
+	background:#DADADA;
+}
 
+#quicklinkssection div {
+	margin: 10%;
+	font-size: 18px;
+	text-shadow: 3px 3px 7px black;
+	color:white;
+}
+
+#quicklinks {
+	list-style-type: none;
+	padding-left: 0;
+	margin-bottom: 0;
+}
+
+
+
+#quicklinks li {
+	padding: 10%;
+	border-top:1px solid white;
+}
+
+#quicklinks li:hover{
+	background: white;
+}
 
 
 @media screen and (max-width: 560px) {
+
+	#main {
+		top: 97px;
+	}
 	.change {
 		display: none;
 	}
@@ -294,6 +338,11 @@ footer {
 	#top {
 		text-align: center;
 	}
+
+	#links {
+		top:97px;
+	}
+
 	#links li {
 	font-size: 12px;
 	}
