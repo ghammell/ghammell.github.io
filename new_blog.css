@@ -13,10 +13,11 @@ body {
 
 #top {
 	border-bottom: 1px solid black;
-	padding: 1% 1% 0 1%;
+	padding: 13px 13px 0 13px;
 	background: #4D4D4D;
 	top: 0;
 	opacity:.9;
+	height:52px;
 }
 
 #nav {
