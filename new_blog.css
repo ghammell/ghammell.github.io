@@ -162,7 +162,7 @@ li #firstlink{
 
 
 #main {
-	width: 70%;
+	width: 65%;
 	margin: 0;
 	background: #80CC99;
 	color: white;
@@ -177,7 +177,7 @@ li #firstlink{
 	position:absolute;
 	bottom:0;
 	top:66px;
-	left:16.5%;
+	left:19%;
 	z-index: -1;
 }
 
@@ -282,7 +282,7 @@ footer {
 	float:left;
 	position:relative;
 	top:15px;
-	left: 88.5%;
+	left: 86%;
 	border-top-right-radius: 3px;
 	border-bottom-right-radius: 3px;
 	background:#DADADA;
