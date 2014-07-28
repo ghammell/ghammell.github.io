@@ -1,21 +1,12 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<link rel="stylesheet" href="../blogs.css">
+		<link rel="stylesheet" href="../new_blog.css">
 	</head>
 	<body class="wrapper">
-		<div id="top">
-			<section>
-				<h1 id="hello" class="banda">GHammell's Blog</h1>
-			</section>
 
-			<nav id="links">
-				<ol>
-					<div id="linkspace">
-						<li id="firstlink"><a href="../index.html">Home</a></li>
-					</div>
-				</ol>
-			</nav>
+		<div id="top">
+				<h1 id="hello" class="banda">ghammell's<b style="font-size:45px">Blog</b></h1>
 
 			<nav id="external">
 				<a href="https://www.facebook.com/gary.hammell.5" class="ext"><img src="../unit1_projects/images/asset.f.logo.lg.png"></a>
@@ -23,15 +14,39 @@
 				<a href="https://twitter.com/ghammell1"><img src="../unit1_projects/images/twitter.png" class="ext"></a>
 				<a href="https://plus.google.com/+GaryHammell1"><img src="../unit1_projects/images/gplus.png" class="ext"></a>
 				<a href="https://github.com/ghammell"><img src="../unit1_projects/images/github.png" class="ext"></a>
-			</nav>
+			</nav>		
+
 		</div>
 
-		<section id="main">
-			<h1 id="welcome" class="banda">Week 4 Technical Blog</h1>
-			<h5 id="maintag">What's this .cycle method all about?</h5>
-		</section>
+			<nav id="links">
+				<ol>
+					<li><ul class="cluster">
+						<li class="weeks"><br></li>
+						<li><a href="../index.html" style="font-size:14px">Home</a></li>
+						<li class="weeks"><br></li>
+					</ul></li>								
+								
+				</ol>
+			</nav>	
 
-		<section id="blog">
+
+<!-- QUICK LINKS GO HERE IF YOU WANT TO USE THEM FOR A BLOG -->
+<!-- 			<ul id="quicklinks">
+				<li>Ruby Class</li>
+				<li>Instances</li>
+				<li>Initializing</li>
+				<li>Instance Variables</li>
+				<li>Instance Methods</li>
+				<li>Attr_accessor</li>		
+				<li>More Instance Methods</li>
+				<li>Class Methods</li>
+				<li>Object Space</li>
+			</ul> -->
+
+			<section id="main">
+
+				<strong id="welcome">The #cycle Method</strong>
+				<br><br>
 				<div id="words">
 						<p>Ruby's enumerable module includes a nifty little method called <b>#cycle</b>.  It's just like the #each method, only it won't stop iterating unless you tell it too.  Once it iterates throught the last object, it will start right back at the beginning and keep going, unless you've specified a specific amount of cycles for it to run, or a specific breaking point.  Lets look at an example.  If we ran the code:
 							<p class="code"> [1,2,3,4,5].each {|num| p num}<br>puts<br>
@@ -287,17 +302,13 @@
 
 
 						</p>
-
 				</div>
-		</section>
+				<br>
 
-		<footer>
-			<span><a href="#">back to top</a><span><br><br>
-			<span>Copyright: Gary Hammell 2014</span>
-		</footer>
+				<span style="font-size:12px">Copyright: Gary Hammell 2014</span>
+			</section>
 
 	</body>
-
 
 
 </html>
