@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="../new_blog.css">
+		<link rel="stylesheet" href="cheat_sheet.css">
+	</head>
+	<body class="wrapper">
+
+		<div id="top">
+				<h1 id="hello" class="banda">ghammell's<b style="font-size:45px">Blog</b></h1>
+
+			<nav id="external">
+				<a href="https://www.facebook.com/gary.hammell.5" class="ext"><img src="../unit1_projects/images/asset.f.logo.lg.png"></a>
+				<a href="http://www.linkedin.com/pub/gary-hammell/53/574/352/" class="ext"><img src="../unit1_projects/images/linkedin.png"></a>
+				<a href="https://twitter.com/ghammell1"><img src="../unit1_projects/images/twitter.png" class="ext"></a>
+				<a href="https://plus.google.com/+GaryHammell1"><img src="../unit1_projects/images/gplus.png" class="ext"></a>
+				<a href="https://github.com/ghammell"><img src="../unit1_projects/images/github.png" class="ext"></a>
+			</nav>		
+
+		</div>
+
+			<nav id="links">
+				<ol>
+					<li><ul class="cluster">
+						<li class="weeks"><br></li>
+						<li><a href="../index.html" style="font-size:14px">Home</a></li>
+						<li class="weeks"><br></li>
+					</ul></li>								
+								
+				</ol>
+			</nav>	
+
+
+<!-- QUICK LINKS GO HERE IF YOU WANT TO USE THEM FOR A BLOG -->
+			<ul id="quicklinks">
+				<a href="#ruby_basics"><li>Ruby BASICS</li>
+				<a href="#ruby_enu"><li>Ruby Enumerables</li>
+				<a href="#ruby_structures"><li>Ruby Hashes, Arrays, Strings, Integers</li>
+				<a href="#js_objects"><li>JavaScript Objects</li>
+				<a href="#js_proto"><li>JavaScript Prototypes</li>
+				<a href="#looping"><li>Looping in Ruby and JavaScript</li>
+				<a href="#HTML"><li>HTML</li>
+				<a href="#CSS"><li>CSS</li>
+				<a href="#GIT"><li>GIT</li>
+				<a href="#SQL"><li>SQL</li></a>
+			</ul>
+
+			<section id="main">
+
+				<strong id="welcome">Cheat Sheet</strong>
+				<br><br>
+				<div id="words">
+
+<!-- 					<ul id="top_links">
+						<a href="#ruby_basics"><li>Ruby BASICS</li>
+						<a href="#ruby_enu"><li>Ruby Enumerables</li>
+						<a href="#ruby_structures"><li>Ruby Hashes, Arrays, Strings, Integers</li>
+						<a href="#js_objects"><li>JavaScript Objects</li>
+						<a href="#js_proto"><li>JavaScript Prototypes</li>
+						<a href="#looping"><li>Looping in Ruby and JavaScript</li>
+						<a href="#HTML"><li>HTML</li>
+						<a href="#CSS"><li>CSS</li>
+						<a href="#GIT"><li>GIT</li>
+						<a href="#SQL"><li>SQL</li></a>
+					</ul> -->
+						
+					<p>	
+						Welcome to my cheat sheet!  I'm going to edit this document as I progress through dev bootcamp, documenting those concepts that I find are essential to know.<br><br>
+
+						<h3 id="ruby_basics">Ruby BASICS</h3>
+						Material coming soon!
+						<br><br>
+						<h3 id="ruby_enu">Ruby Enumerables</h3>
+
+						The ruby enumberable methods are used to iterate through each component of an object:<br>
+						<ul>
+						<li>each object of an array</li>
+						<li>each key-value pair of a hash</li>
+						<li>each key of a hash</li>
+						<li>each value of a hash</li>
+						<li>each number in a range</li>
+						</ul>
+
+						---------------------------------------------
+
+						<ul>
+							<li><b>#each</b><br>
+								- performs a specific block of code for each object in an array, or for each key-value pair in a hash
+								<div class="code">
+									nums = [1,2,3,4,5]<br>
+									nums.each {|num| puts num*2}
+								</div>
+
+								<div class="output">
+									2<br>
+									4<br>
+									6<br>
+									8<br>
+									10<br>
+								</div>								
+							</li><br>
+
+							<li><b>#reverse_each</b><br>
+								- the same as #each, except that iterates through each object backwards
+								<div class="code">
+									nums = [1,2,3,4,5]<br>
+									nums.reverse_each {|num| puts num*2}
+								</div>
+
+								<div class="output">
+									10<br>
+									8<br>
+									6<br>
+									4<br>
+									2<br>
+								</div>									
+							</li><br>
+
+							<li><b>#map</b><br>
+								- creates a new array, replacing each value of the current array with the output of the code block passed at every iteration
+								<div class="code">
+									nums = [1,2,3,4,5]<br>
+									nums.map {|num| num*3}
+								</div>
+
+								<div class="output">
+									[3,6,9,12,15]
+								</div>										
+							</li><br>
+
+							<li><b>#collect</b><br>
+								- same as the #map method
+							</li><br>
+
+							<li><b>#select</b><br>
+								- creates a new array with the values from the original array that satisfy a condition imposed by the block
+								<div class="code">
+									nums = [1,2,3,4,5]<br>
+									nums.select {|num| num % 2 == 0}
+								</div>
+
+								<div class="output">
+									[2,5]
+								</div>									
+							</li><br>
+
+							<li><b>#inject</b><br>
+								- works like the #each method, except it also defines a variable whose value is set to the output of every iteration (the starting point of this variable must be defined)<br>
+								<div class="code">
+									nums = [1,2,3,4,5]<br>
+									nums.inject(0) {|sum, num| sum += num}
+								</div>
+
+								<div class="output">
+									15
+								</div>
+							</li>
+
+							<li><b>#cycle</b><br>
+								- works like the #each method, except it doesn't stop at the last iteration.  It starts from the beginning again and cycles through the code an unlimited amount of times, unless a specific cycle count is defined, or if there is a specific breaking point
+								<div class="code">
+									nums = [1,2,3,4,5]<br>
+									i = 0<br>
+									nums.cycle {|num| puts num; i += 1; break if i == 15}
+								</div>
+
+								<div class="output">
+									1<br>
+									2<br>
+									3<br>
+									4<br>
+									5<br>
+									1<br>
+									2<br>
+									3<br>
+									4<br>
+									5<br>
+									1<br>
+									2<br>
+									3<br>
+									4<br>
+									5<br>								
+								</div>
+
+								<div class="code">
+									nums = [1,2,3,4,5]<br>
+									nums.cycle(3) {|num| puts num}
+								</div>
+
+								<div class="output">
+									1<br>
+									2<br>
+									3<br>
+									4<br>
+									5<br>
+									1<br>
+									2<br>
+									3<br>
+									4<br>
+									5<br>
+									1<br>
+									2<br>
+									3<br>
+									4<br>
+									5<br>								
+								</div>															
+							</li>
+
+							<li><b>#include?</b><br>
+								- returns true or false if the array it is called on includes a specific value<br>
+								<div class="code">
+									nums = [1,2,3,4,5]<br>
+									nums.include?(3)<br>
+									nums.include?(6)
+								</div>
+
+								<div class="output">
+									true<br>
+									false<br>
+								</div>
+							</li>							
+
+						</ul>
+
+						<br><br>
+						<h3 id="ruby_structures">Ruby Hashes, Arrays, Strings, Integers</h3>
+						Material coming soon!<br><br>
+						<h3 id="js_objects">JavaScript Objects</h3>
+						Material coming soon!<br><br>
+						<h3 id="js_proto">JavaScript prototypes</h3>
+						Material coming soon!<br><br>
+						<h3 id="looping">Looping in Ruby and Javascript (comparisons)</h3>
+						Material coming soon!<br><br>
+						<h3 id="HTML">HTML</h3>
+						Material coming soon!<br><br>
+						<h3 id="CSS">CSS</h3>
+						Material coming soon!<br><br>
+						<h3 id="GIT">GIT</h3>
+						Material coming soon!<br><br>
+						<h3 id="SQL">SQL</h3>
+						Material coming soon!
+					</p>
+				</div>
+				<br>
+
+				<span style="font-size:12px">Copyright: Gary Hammell 2014</span>
+			</section>
+
+	</body>
+
+
+</html>
