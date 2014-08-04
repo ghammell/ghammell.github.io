@@ -21,8 +21,6 @@ html {
 	border-bottom: 1px solid black;
 	padding: 13px 13px 0 13px;
 	background: #4D4D4D;
-	top: 0;
-	height:52px;
 }
 
 #nav {
@@ -102,14 +100,17 @@ html {
 	position:relative;
 	bottom:0px;
 	transition: all .2s;
-/*	position: relative;
-	top: 10px;
-	right:50px;*/
 }
 
 #external {
 	float:right;
-/*	max-width: 50px;*/
+}
+
+#external .internal {
+	background: white;
+	width:25px;
+	font-size: 12px;
+	text-decoration: none;
 }
 
 #external img:hover {
@@ -117,10 +118,6 @@ html {
 	bottom:4px;
 }
 
-#links:visited {
-	background: white;
-	color: green;
-}
 
 #links a {
 	color: white;
@@ -274,38 +271,6 @@ footer {
 	vertical-align: middle;
 }
 
-#quicklinks {
-	width: 10%;
-	text-align: center;
-	font-size: 12px;
-	float:left;
-	position:relative;
-	top:70px;
-	left: 85%;
-	list-style-type: none;
-	padding-left: 0;
-	margin: 0;
-	box-shadow: 3px 3px 5px black;
-}
-
-
-
-#quicklinks li {
-	font-weight: bold;
-	padding: 10%;
-/*	border-top:1px solid #eee;*/
-	color: white;
-	text-shadow: 2px 2px 2px black;
-	background-color:rgba(255,255,255,0.5);
-	box-shadow: none;
-	transition: all .2s;
-
-}
-
-#quicklinks li:hover{
-		background-color:rgba(0,0,255,0);
-		box-shadow: 2px 2px 2px black;
-}
 
 .code {
 	text-align: left;
